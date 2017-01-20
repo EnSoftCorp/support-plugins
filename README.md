@@ -1,2 +1,2 @@
-# support-plugins
-A collection of third party Eclipse support plugins
+# Support Plugins
+A collection of third party Eclipse support plugins.
