@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2015-2017, by Andrew Chen and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,48 +15,33 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* ---------------------------------
- * DirectedWeightedGraphBuilder.java
- * ---------------------------------
- * (C) Copyright 2015, by Andrew Chen and Contributors.
- *
- * Original Author:  Andrew Chen <llkiwi2006@gmail.com>
- * Contributor(s):   -
- *
- * $Id$
- *
- * Changes
- * -------
- * 12-Jan-2015 : Initial revision (AC);
- *
- */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.DirectedGraph;
-import org.jgrapht.WeightedGraph;
-
+import org.jgrapht.*;
 
 /**
- * A builder class for directed weighted graphs}. If you want to extend this
- * class, see {@link DirectedWeightedGraphBuilderBase}.
+ * A builder class for directed weighted graphs}. If you want to extend this class, see
+ * {@link DirectedWeightedGraphBuilderBase}.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ * @param <G> type of the resulting graph
+ * 
  */
-public final class DirectedWeightedGraphBuilder<V,
-    E, G extends DirectedGraph<V, E> & WeightedGraph<V, E>>
-    extends DirectedWeightedGraphBuilderBase<V,
-        E, G, DirectedWeightedGraphBuilder<V, E, G>>
+public final class DirectedWeightedGraphBuilder<V, E,
+    G extends DirectedGraph<V, E> & WeightedGraph<V, E>>
+    extends DirectedWeightedGraphBuilderBase<V, E, G, DirectedWeightedGraphBuilder<V, E, G>>
 {
-    
-
     /**
-     * Creates a builder based on {@code baseGraph}. {@code baseGraph} must be
-     * mutable.
+     * Creates a builder based on {@code baseGraph}. {@code baseGraph} must be mutable.
      *
-     * <p>The recomended way to use this constructor is: {@code new
+     * <p>
+     * The recommended way to use this constructor is: {@code new
      * DirectedWeightedGraphBuilder<...>(new YourGraph<...>(...))}.
      *
-     * <p>NOTE: {@code baseGraph} should not be an existing graph. If you want
-     * to add an existing graph to the graph being built, you should use the
-     * {@link #addVertex(Object)} method.
+     * <p>
+     * NOTE: {@code baseGraph} should not be an existing graph. If you want to add an existing graph
+     * to the graph being built, you should use the {@link #addVertex(Object)} method.
      *
      * @param baseGraph the graph object to base building on
      */
@@ -69,9 +50,11 @@ public final class DirectedWeightedGraphBuilder<V,
         super(baseGraph);
     }
 
-    
-
-    @Override protected DirectedWeightedGraphBuilder<V, E, G> self()
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected DirectedWeightedGraphBuilder<V, E, G> self()
     {
         return this;
     }

@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2007-2017, by France Telecom and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,27 +15,18 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * DirectedMaskSubgraph.java
- * -------------------------
- * (C) Copyright 2007-2008, by France Telecom
- *
- * Original Author:  Guillaume Boulmier and Contributors.
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Jun-2007 : Initial revision (GB);
- *
- */
 package org.jgrapht.graph;
 
-import org.jgrapht.DirectedGraph;
+import java.util.*;
+import java.util.function.*;
 
+import org.jgrapht.*;
 
 /**
- * A directed graph that is a {@link MaskSubgraph} on another graph.
+ * A directed graph that is a {@link MaskSubgraph} of another graph.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author Guillaume Boulmier
  * @since July 5, 2007
@@ -48,14 +35,77 @@ public class DirectedMaskSubgraph<V, E>
     extends MaskSubgraph<V, E>
     implements DirectedGraph<V, E>
 {
-    
-
-    public DirectedMaskSubgraph(
-        DirectedGraph<V, E> base,
-        MaskFunctor<V, E> mask)
+    /**
+     * Create a new directed {@link MaskSubgraph} of another graph.
+     * 
+     * @param base the base graph
+     * @param mask vertices and edges to exclude in the subgraph. If a vertex/edge is masked, it is
+     *        as if it is not in the subgraph.
+     * @deprecated in favor of using lambdas
+     */
+    @Deprecated
+    public DirectedMaskSubgraph(DirectedGraph<V, E> base, MaskFunctor<V, E> mask)
     {
         super(base, mask);
     }
+
+    /**
+     * Create a new directed {@link MaskSubgraph} of another graph.
+     *
+     * @param base the base graph
+     * @param vertexMask vertices to exclude in the subgraph. If a vertex is masked, it is as if it
+     *        is not in the subgraph. Edges incident to the masked vertex are also masked.
+     * @param edgeMask edges to exclude in the subgraph. If an edge is masked, it is as if it is not
+     *        in the subgraph.
+     */
+    public DirectedMaskSubgraph(
+        DirectedGraph<V, E> base, Predicate<V> vertexMask, Predicate<E> edgeMask)
+    {
+        super(base, vertexMask, edgeMask);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int inDegreeOf(V vertex)
+    {
+        return incomingEdgesOf(vertex).size();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<E> incomingEdgesOf(V vertex)
+    {
+        assertVertexExist(vertex);
+
+        return new MaskEdgeSet<>(
+            base, ((DirectedGraph<V, E>) base).incomingEdgesOf(vertex), vertexMask, edgeMask);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int outDegreeOf(V vertex)
+    {
+        return outgoingEdgesOf(vertex).size();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Set<E> outgoingEdgesOf(V vertex)
+    {
+        assertVertexExist(vertex);
+
+        return new MaskEdgeSet<>(
+            base, ((DirectedGraph<V, E>) base).outgoingEdgesOf(vertex), vertexMask, edgeMask);
+    }
+
 }
 
 // End DirectedMaskSubgraph.java

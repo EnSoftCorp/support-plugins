@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2005-2017, by Charles Fry and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,68 +15,41 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* --------------------------
- * NeighborIndex.java
- * --------------------------
- * (C) Copyright 2005-2008, by Charles Fry and Contributors.
- *
- * Original Author:  Charles Fry
- *
- * $Id$
- *
- * Changes
- * -------
- * 13-Dec-2005 : Initial revision (CF);
- *
- */
 package org.jgrapht.alg;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.Graphs;
-import org.jgrapht.event.GraphEdgeChangeEvent;
-import org.jgrapht.event.GraphListener;
-import org.jgrapht.event.GraphVertexChangeEvent;
-import org.jgrapht.event.VertexSetListener;
-import org.jgrapht.util.ModifiableInteger;
-
+import org.jgrapht.*;
+import org.jgrapht.event.*;
+import org.jgrapht.util.*;
 
 /**
- * Maintains a cache of each vertex's neighbors. While lists of neighbors can be
- * obtained from {@link Graphs}, they are re-calculated at each invocation by
- * walking a vertex's incident edges, which becomes inordinately expensive when
- * performed often.
+ * Maintains a cache of each vertex's neighbors. While lists of neighbors can be obtained from
+ * {@link Graphs}, they are re-calculated at each invocation by walking a vertex's incident edges,
+ * which becomes inordinately expensive when performed often.
  *
- * <p>Edge direction is ignored when evaluating neighbors; to take edge
- * direction into account when indexing neighbors, use {@link
- * DirectedNeighborIndex}.
+ * <p>
+ * Edge direction is ignored when evaluating neighbors; to take edge direction into account when
+ * indexing neighbors, use {@link DirectedNeighborIndex}.
  *
- * <p>A vertex's neighbors are cached the first time they are asked for (i.e.
- * the index is built on demand). The index will only be updated automatically
- * if it is added to the associated graph as a listener. If it is added as a
- * listener to a graph other than the one it indexes, results are undefined.</p>
+ * <p>
+ * A vertex's neighbors are cached the first time they are asked for (i.e. the index is built on
+ * demand). The index will only be updated automatically if it is added to the associated graph as a
+ * listener. If it is added as a listener to a graph other than the one it indexes, results are
+ * undefined.
+ * </p>
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author Charles Fry
  * @since Dec 13, 2005
  */
-@SuppressWarnings("unused")
 public class NeighborIndex<V, E>
     implements GraphListener<V, E>
 {
-    
-
-    Map<V, Neighbors<V, E>> neighborMap = new HashMap<V, Neighbors<V, E>>();
+    Map<V, Neighbors<V>> neighborMap = new HashMap<>();
     private Graph<V, E> graph;
-
-    
 
     /**
      * Creates a neighbor index for the specified undirected graph.
@@ -93,12 +62,10 @@ public class NeighborIndex<V, E>
         graph = g;
     }
 
-    
-
     /**
-     * Returns the set of vertices which are adjacent to a specified vertex. The
-     * returned set is backed by the index, and will be updated when the graph
-     * changes as long as the index has been added as a listener to the graph.
+     * Returns the set of vertices which are adjacent to a specified vertex. The returned set is
+     * backed by the index, and will be updated when the graph changes as long as the index has been
+     * added as a listener to the graph.
      *
      * @param v the vertex whose neighbors are desired
      *
@@ -110,12 +77,11 @@ public class NeighborIndex<V, E>
     }
 
     /**
-     * Returns a list of vertices which are adjacent to a specified vertex. If
-     * the graph is a multigraph, vertices may appear more than once in the
-     * returned list. Because a list of neighbors can not be efficiently
-     * maintained, it is reconstructed on every invocation, by duplicating
-     * entries in the neighbor set. It is thus more efficient to use {@link
-     * #neighborsOf(Object)} unless duplicate neighbors are important.
+     * Returns a list of vertices which are adjacent to a specified vertex. If the graph is a
+     * multigraph, vertices may appear more than once in the returned list. Because a list of
+     * neighbors can not be efficiently maintained, it is reconstructed on every invocation, by
+     * duplicating entries in the neighbor set. It is thus more efficient to use
+     * {@link #neighborsOf(Object)} unless duplicate neighbors are important.
      *
      * @param v the vertex whose neighbors are desired
      *
@@ -129,7 +95,8 @@ public class NeighborIndex<V, E>
     /**
      * @see GraphListener#edgeAdded(GraphEdgeChangeEvent)
      */
-    @Override public void edgeAdded(GraphEdgeChangeEvent<V, E> e)
+    @Override
+    public void edgeAdded(GraphEdgeChangeEvent<V, E> e)
     {
         E edge = e.getEdge();
         V source = graph.getEdgeSource(edge);
@@ -155,9 +122,9 @@ public class NeighborIndex<V, E>
     /**
      * @see GraphListener#edgeRemoved(GraphEdgeChangeEvent)
      */
-    @Override public void edgeRemoved(GraphEdgeChangeEvent<V, E> e)
+    @Override
+    public void edgeRemoved(GraphEdgeChangeEvent<V, E> e)
     {
-		E edge = e.getEdge();
         V source = e.getEdgeSource();
         V target = e.getEdgeTarget();
         if (neighborMap.containsKey(source)) {
@@ -171,7 +138,8 @@ public class NeighborIndex<V, E>
     /**
      * @see VertexSetListener#vertexAdded(GraphVertexChangeEvent)
      */
-    @Override public void vertexAdded(GraphVertexChangeEvent<V> e)
+    @Override
+    public void vertexAdded(GraphVertexChangeEvent<V> e)
     {
         // nothing to cache until there are edges
     }
@@ -179,40 +147,35 @@ public class NeighborIndex<V, E>
     /**
      * @see VertexSetListener#vertexRemoved(GraphVertexChangeEvent)
      */
-    @Override public void vertexRemoved(GraphVertexChangeEvent<V> e)
+    @Override
+    public void vertexRemoved(GraphVertexChangeEvent<V> e)
     {
         neighborMap.remove(e.getVertex());
     }
 
-    private Neighbors<V, E> getNeighbors(V v)
+    private Neighbors<V> getNeighbors(V v)
     {
-        Neighbors<V, E> neighbors = neighborMap.get(v);
+        Neighbors<V> neighbors = neighborMap.get(v);
         if (neighbors == null) {
-            neighbors = new Neighbors<V, E>(v,
-                Graphs.neighborListOf(graph, v));
+            neighbors = new Neighbors<>(Graphs.neighborListOf(graph, v));
             neighborMap.put(v, neighbors);
         }
         return neighbors;
     }
 
-    
-
     /**
-     * Stores cached neighbors for a single vertex. Includes support for live
-     * neighbor sets and duplicate neighbors.
+     * Stores cached neighbors for a single vertex. Includes support for live neighbor sets and
+     * duplicate neighbors.
      */
-    static class Neighbors<V, E>
+    static class Neighbors<V>
     {
-        private Map<V, ModifiableInteger> neighborCounts =
-            new LinkedHashMap<V, ModifiableInteger>();
+        private Map<V, ModifiableInteger> neighborCounts = new LinkedHashMap<>();
 
         // TODO could eventually make neighborSet modifiable, resulting
         // in edge removals from the graph
-        private Set<V> neighborSet =
-            Collections.unmodifiableSet(
-                neighborCounts.keySet());
+        private Set<V> neighborSet = Collections.unmodifiableSet(neighborCounts.keySet());
 
-        public Neighbors(V v, Collection<V> neighbors)
+        public Neighbors(Collection<V> neighbors)
         {
             // add all current neighbors
             for (V neighbor : neighbors) {
@@ -252,11 +215,8 @@ public class NeighborIndex<V, E>
 
         public List<V> getNeighborList()
         {
-            List<V> neighbors = new ArrayList<V>();
-            for (
-                Map.Entry<V, ModifiableInteger> entry
-                : neighborCounts.entrySet())
-            {
+            List<V> neighbors = new ArrayList<>();
+            for (Map.Entry<V, ModifiableInteger> entry : neighborCounts.entrySet()) {
                 V v = entry.getKey();
                 int count = entry.getValue().intValue();
                 for (int i = 0; i < count; i++) {

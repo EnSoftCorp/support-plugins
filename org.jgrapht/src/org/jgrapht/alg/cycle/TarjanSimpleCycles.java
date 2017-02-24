@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2013-2017, by Nikolay Ognyanov and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,40 +15,19 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * TarjanSimpleCycles.java
- * -------------------------
- * (C) Copyright 2013, by Nikolay Ognyanov
- *
- * Original Author: Nikolay Ognyanov
- * Contributor(s) :
- *
- * $Id$
- *
- * Changes
- * -------
- * 06-Sep-2013 : Initial revision (NO);
- */
 package org.jgrapht.alg.cycle;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.DirectedGraph;
-
+import org.jgrapht.*;
 
 /**
  * Find all simple cycles of a directed graph using the Tarjan's algorithm.
  *
- * <p>See:<br>
- * R. Tarjan, Enumeration of the elementary circuits of a directed graph, SIAM
- * J. Comput., 2 (1973), pp. 211-216.
+ * <p>
+ * See:<br>
+ * R. Tarjan, Enumeration of the elementary circuits of a directed graph, SIAM J. Comput., 2 (1973),
+ * pp. 211-216.
  *
  * @param <V> the vertex type.
  * @param <E> the edge type.
@@ -62,8 +37,6 @@ import org.jgrapht.DirectedGraph;
 public class TarjanSimpleCycles<V, E>
     implements DirectedSimpleCycles<V, E>
 {
-    
-
     private DirectedGraph<V, E> graph;
 
     private List<List<V>> cycles;
@@ -72,8 +45,6 @@ public class TarjanSimpleCycles<V, E>
     private ArrayDeque<V> pointStack;
     private Map<V, Integer> vToI;
     private Map<V, Set<V>> removed;
-
-    
 
     /**
      * Create a simple cycle finder with an unspecified graph.
@@ -98,12 +69,11 @@ public class TarjanSimpleCycles<V, E>
         this.graph = graph;
     }
 
-    
-
     /**
      * {@inheritDoc}
      */
-    @Override public DirectedGraph<V, E> getGraph()
+    @Override
+    public DirectedGraph<V, E> getGraph()
     {
         return graph;
     }
@@ -111,7 +81,8 @@ public class TarjanSimpleCycles<V, E>
     /**
      * {@inheritDoc}
      */
-    @Override public void setGraph(DirectedGraph<V, E> graph)
+    @Override
+    public void setGraph(DirectedGraph<V, E> graph)
     {
         if (graph == null) {
             throw new IllegalArgumentException("Null graph argument.");
@@ -122,7 +93,8 @@ public class TarjanSimpleCycles<V, E>
     /**
      * {@inheritDoc}
      */
-    @Override public List<List<V>> findSimpleCycles()
+    @Override
+    public List<List<V>> findSimpleCycles()
     {
         if (graph == null) {
             throw new IllegalArgumentException("Null graph.");
@@ -158,9 +130,9 @@ public class TarjanSimpleCycles<V, E>
                 getRemoved(vertex).add(currentVertex);
             } else if (comparison == 0) {
                 foundCycle = true;
-                List<V> cycle = new ArrayList<V>();
+                List<V> cycle = new ArrayList<>();
                 Iterator<V> it = pointStack.descendingIterator();
-                V v = null;
+                V v;
                 while (it.hasNext()) {
                     v = it.next();
                     if (start.equals(v)) {
@@ -191,12 +163,12 @@ public class TarjanSimpleCycles<V, E>
 
     private void initState()
     {
-        cycles = new ArrayList<List<V>>();
-        marked = new HashSet<V>();
-        markedStack = new ArrayDeque<V>();
-        pointStack = new ArrayDeque<V>();
-        vToI = new HashMap<V, Integer>();
-        removed = new HashMap<V, Set<V>>();
+        cycles = new ArrayList<>();
+        marked = new HashSet<>();
+        markedStack = new ArrayDeque<>();
+        pointStack = new ArrayDeque<>();
+        vToI = new HashMap<>();
+        removed = new HashMap<>();
         int index = 0;
         for (V v : graph.vertexSet()) {
             vToI.put(v, index++);
@@ -223,7 +195,7 @@ public class TarjanSimpleCycles<V, E>
         // needed, so instantiate lazily.
         Set<V> result = removed.get(v);
         if (result == null) {
-            result = new HashSet<V>();
+            result = new HashSet<>();
             removed.put(v, result);
         }
         return result;

@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2004-2017, by John V Sichi and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,55 +15,34 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* ------------------
- * CycleDetector.java
- * ------------------
- * (C) Copyright 2004-2008, by John V. Sichi and Contributors.
- *
- * Original Author:  John V. Sichi
- * Contributor(s):   Christian Hammer
- *
- * $Id$
- *
- * Changes
- * -------
- * 16-Sept-2004 : Initial revision (JVS);
- * 07-Jun-2005 : Made generic (CH);
- *
- */
 package org.jgrapht.alg;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.DirectedGraph;
-import org.jgrapht.traverse.DepthFirstIterator;
-
+import org.jgrapht.*;
+import org.jgrapht.alg.interfaces.*;
+import org.jgrapht.traverse.*;
 
 /**
- * Performs cycle detection on a graph. The <i>inspected graph</i> is specified
- * at construction time and cannot be modified. Currently, the detector supports
- * only directed graphs.
+ * Performs cycle detection on a graph. The <i>inspected graph</i> is specified at construction time
+ * and cannot be modified. Currently, the detector supports only directed graphs.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author John V. Sichi
  * @since Sept 16, 2004
  */
 public class CycleDetector<V, E>
 {
-    
-
     /**
      * Graph on which cycle detection is being performed.
      */
     DirectedGraph<V, E> graph;
 
-    
-
     /**
-     * Creates a cycle detector for the specified graph. Currently only directed
-     * graphs are supported.
+     * Creates a cycle detector for the specified graph. Currently only directed graphs are
+     * supported.
      *
      * @param graph the DirectedGraph in which to detect cycles
      */
@@ -75,8 +50,6 @@ public class CycleDetector<V, E>
     {
         this.graph = graph;
     }
-
-    
 
     /**
      * Performs yes/no cycle detection on the entire graph.
@@ -115,22 +88,21 @@ public class CycleDetector<V, E>
     /**
      * Finds the vertex set for the subgraph of all cycles.
      *
-     * @return set of all vertices which participate in at least one cycle in
-     * this graph
+     * @return set of all vertices which participate in at least one cycle in this graph
      */
     public Set<V> findCycles()
     {
         // ProbeIterator can't be used to handle this case,
-        // so use StrongConnectivityInspector instead.
-        StrongConnectivityInspector<V, E> inspector =
-            new StrongConnectivityInspector<V, E>(graph);
+        // so use StrongConnectivityAlgorithm instead.
+        StrongConnectivityAlgorithm<V, E> inspector =
+            new KosarajuStrongConnectivityInspector<>(graph);
         List<Set<V>> components = inspector.stronglyConnectedSets();
 
         // A vertex participates in a cycle if either of the following is
-        // true:  (a) it is in a component whose size is greater than 1
+        // true: (a) it is in a component whose size is greater than 1
         // or (b) it is a self-loop
 
-        Set<V> set = new HashSet<V>();
+        Set<V> set = new LinkedHashSet<>();
         for (Set<V> component : components) {
             if (component.size() > 1) {
                 // cycle
@@ -148,14 +120,13 @@ public class CycleDetector<V, E>
     }
 
     /**
-     * Finds the vertex set for the subgraph of all cycles which contain a
-     * particular vertex.
+     * Finds the vertex set for the subgraph of all cycles which contain a particular vertex.
      *
-     * <p>REVIEW jvs 25-Aug-2006: This implementation is not guaranteed to cover
-     * all cases. If you want to be absolutely certain that you report vertices
-     * from all cycles containing v, it's safer (but less efficient) to use
-     * StrongConnectivityInspector instead and return the strongly connected
-     * component containing v.
+     * <p>
+     * REVIEW jvs 25-Aug-2006: This implementation is not guaranteed to cover all cases. If you want
+     * to be absolutely certain that you report vertices from all cycles containing v, it's safer
+     * (but less efficient) to use StrongConnectivityAlgorithm instead and return the strongly
+     * connected component containing v.
      *
      * @param v the vertex to test
      *
@@ -163,7 +134,7 @@ public class CycleDetector<V, E>
      */
     public Set<V> findCyclesContainingVertex(V v)
     {
-        Set<V> set = new HashSet<V>();
+        Set<V> set = new LinkedHashSet<>();
         execute(set, v);
 
         return set;
@@ -178,11 +149,9 @@ public class CycleDetector<V, E>
         }
     }
 
-    
-
     /**
-     * Exception thrown internally when a cycle is detected during a yes/no
-     * cycle test. Must be caught by top-level detection method.
+     * Exception thrown internally when a cycle is detected during a yes/no cycle test. Must be
+     * caught by top-level detection method.
      */
     private static class CycleDetectedException
         extends RuntimeException
@@ -191,8 +160,7 @@ public class CycleDetector<V, E>
     }
 
     /**
-     * Version of DFS which maintains a backtracking path used to probe for
-     * cycles.
+     * Version of DFS which maintains a backtracking path used to probe for cycles.
      */
     private class ProbeIterator
         extends DepthFirstIterator<V, E>
@@ -206,13 +174,14 @@ public class CycleDetector<V, E>
             super(graph, startVertex);
             root = startVertex;
             this.cycleSet = cycleSet;
-            path = new ArrayList<V>();
+            path = new ArrayList<>();
         }
 
         /**
          * {@inheritDoc}
          */
-        @Override protected void encounterVertexAgain(V vertex, E edge)
+        @Override
+        protected void encounterVertexAgain(V vertex, E edge)
         {
             super.encounterVertexAgain(vertex, edge);
 
@@ -248,7 +217,8 @@ public class CycleDetector<V, E>
         /**
          * {@inheritDoc}
          */
-        @Override protected V provideNextVertex()
+        @Override
+        protected V provideNextVertex()
         {
             V v = super.provideNextVertex();
 

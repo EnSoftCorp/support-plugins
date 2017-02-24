@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2003-2017, by Barak Naveh and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,44 +15,24 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* ------------------------
- * SimpleDirectedGraph.java
- * ------------------------
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
- *
- * Original Author:  Barak Naveh
- * Contributor(s):   Christian Hammer
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Aug-2003 : Initial revision (BN);
- * 06-Aug-2005 : Made generic (CH);
- * 28-May-2006 : Moved connectivity info from edge to graph (JVS);
- *
- */
 package org.jgrapht.graph;
 
-import org.jgrapht.DirectedGraph;
-import org.jgrapht.EdgeFactory;
-import org.jgrapht.graph.builder.DirectedGraphBuilder;
-import org.jgrapht.graph.builder.DirectedGraphBuilderBase;
-
+import org.jgrapht.*;
+import org.jgrapht.graph.builder.*;
 
 /**
- * A simple directed graph. A simple directed graph is a directed graph in which
- * neither multiple edges between any two vertices nor loops are permitted.
+ * A simple directed graph. A simple directed graph is a directed graph in which neither multiple
+ * edges between any two vertices nor loops are permitted.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ *
  */
 public class SimpleDirectedGraph<V, E>
     extends AbstractBaseGraph<V, E>
     implements DirectedGraph<V, E>
 {
-    
-
     private static final long serialVersionUID = 4049358608472879671L;
-
-    
 
     /**
      * Creates a new simple directed graph.
@@ -65,7 +41,7 @@ public class SimpleDirectedGraph<V, E>
      */
     public SimpleDirectedGraph(Class<? extends E> edgeClass)
     {
-        this(new ClassBasedEdgeFactory<V, E>(edgeClass));
+        this(new ClassBasedEdgeFactory<>(edgeClass));
     }
 
     /**
@@ -78,21 +54,34 @@ public class SimpleDirectedGraph<V, E>
         super(ef, false, false);
     }
 
-    
-
-    public static <V, E> DirectedGraphBuilderBase<V,
-        E, ? extends SimpleDirectedGraph<V, E>, ?> builder(
-        Class<? extends E> edgeClass)
+    /**
+     * Create a builder for this kind of graph.
+     * 
+     * @param edgeClass class on which to base factory for edges
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
+     * @return a builder for this kind of graph
+     */
+    public static <V,
+        E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(
+            Class<? extends E> edgeClass)
     {
-        return new DirectedGraphBuilder<V, E, SimpleDirectedGraph<V, E>>(
-            new SimpleDirectedGraph<V, E>(edgeClass));
+        return new DirectedGraphBuilder<>(new SimpleDirectedGraph<>(edgeClass));
     }
 
-    public static <V, E> DirectedGraphBuilderBase<V,
-        E, ? extends SimpleDirectedGraph<V, E>, ?> builder(EdgeFactory<V, E> ef)
+    /**
+     * Create a builder for this kind of graph.
+     * 
+     * @param ef the edge factory of the new graph
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
+     * @return a builder for this kind of graph
+     */
+    public static <V,
+        E> DirectedGraphBuilderBase<V, E, ? extends SimpleDirectedGraph<V, E>, ?> builder(
+            EdgeFactory<V, E> ef)
     {
-        return new DirectedGraphBuilder<V, E, SimpleDirectedGraph<V, E>>(
-            new SimpleDirectedGraph<V, E>(ef));
+        return new DirectedGraphBuilder<>(new SimpleDirectedGraph<>(ef));
     }
 }
 

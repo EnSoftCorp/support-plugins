@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2010-2017, by Tom Conerly and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2010, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,63 +15,42 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * UnionFind.java
- * -------------------------
- * (C) Copyright 2010-2010, by Tom Conerly and Contributors.
- *
- * Original Author:  Tom Conerly
- * Contributor(s):
- *
- * Changes
- * -------
- * 02-Feb-2010 : Initial revision (TC);
- *
- */
 package org.jgrapht.alg.util;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
+import java.util.*;
 
 /**
- * An implementation of <a
- * href="http://en.wikipedia.org/wiki/Disjoint-set_data_structure">Union
- * Find</a> data structure. Union Find is a disjoint-set data structure. It
- * supports two operations: finding the set a specific element is in, and
- * merging two sets. The implementation uses union by rank and path compression
- * to achieve an amortized cost of O(a(n)) per operation where a is the inverse
- * Ackermann function. UnionFind uses the hashCode and equals method of the
- * elements it operates on.
+ * An implementation of <a href="http://en.wikipedia.org/wiki/Disjoint-set_data_structure">Union
+ * Find</a> data structure. Union Find is a disjoint-set data structure. It supports two operations:
+ * finding the set a specific element is in, and merging two sets. The implementation uses union by
+ * rank and path compression to achieve an amortized cost of O(a(n)) per operation where a is the
+ * inverse Ackermann function. UnionFind uses the hashCode and equals method of the elements it
+ * operates on.
+ *
+ * @param <T> element type
  *
  * @author Tom Conerly
  * @since Feb 10, 2010
  */
 public class UnionFind<T>
 {
-    
-
     private Map<T, T> parentMap;
     private Map<T, Integer> rankMap;
 
-    
-
     /**
-     * Creates a UnionFind instance with all of the elements of elements in
-     * seperate sets.
+     * Creates a UnionFind instance with all the elements in separate sets.
+     * 
+     * @param elements the initial elements to include (each element in a singleton set).
      */
     public UnionFind(Set<T> elements)
     {
-        parentMap = new HashMap<T, T>();
-        rankMap = new HashMap<T, Integer>();
+        parentMap = new HashMap<>();
+        rankMap = new HashMap<>();
         for (T element : elements) {
             parentMap.put(element, element);
             rankMap.put(element, 0);
         }
     }
-
-    
 
     /**
      * Adds a new element to the data structure in its own set.
@@ -114,8 +89,7 @@ public class UnionFind<T>
     public T find(T element)
     {
         if (!parentMap.containsKey(element)) {
-            throw new IllegalArgumentException(
-                "elements must be contained in given set");
+            throw new IllegalArgumentException("elements must be contained in given set");
         }
 
         T parent = parentMap.get(element);
@@ -136,17 +110,14 @@ public class UnionFind<T>
      */
     public void union(T element1, T element2)
     {
-        if (!parentMap.containsKey(element1)
-            || !parentMap.containsKey(element2))
-        {
-            throw new IllegalArgumentException(
-                "elements must be contained in given set");
+        if (!parentMap.containsKey(element1) || !parentMap.containsKey(element2)) {
+            throw new IllegalArgumentException("elements must be contained in given set");
         }
 
         T parent1 = find(element1);
         T parent2 = find(element2);
 
-        //check if the elements are already in the same set
+        // check if the elements are already in the same set
         if (parent1.equals(parent2)) {
             return;
         }

@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2003-2017, by John V Sichi and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,32 +15,18 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------
- * LinearGraphGenerator.java
- * -------------------
- * (C) Copyright 2003-2008, by John V. Sichi and Contributors.
- *
- * Original Author:  John V. Sichi
- * Contributor(s):   -
- *
- * $Id$
- *
- * Changes
- * -------
- * 16-Sep-2003 : Initial revision (JVS);
- *
- */
 package org.jgrapht.generate;
 
-import java.util.Map;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.VertexFactory;
-
+import org.jgrapht.*;
 
 /**
- * Generates a linear graph of any size. For a directed graph, the edges are
- * oriented from START_VERTEX to END_VERTEX.
+ * Generates a linear graph of any size. For a directed graph, the edges are oriented from
+ * START_VERTEX to END_VERTEX.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author John V. Sichi
  * @since Sep 16, 2003
@@ -52,8 +34,6 @@ import org.jgrapht.VertexFactory;
 public class LinearGraphGenerator<V, E>
     implements GraphGenerator<V, E, V>
 {
-    
-
     /**
      * Role for the first vertex generated.
      */
@@ -64,11 +44,7 @@ public class LinearGraphGenerator<V, E>
      */
     public static final String END_VERTEX = "End Vertex";
 
-    
-
     private int size;
-
-    
 
     /**
      * Construct a new LinearGraphGenerator.
@@ -86,15 +62,12 @@ public class LinearGraphGenerator<V, E>
         this.size = size;
     }
 
-    
-
     /**
      * {@inheritDoc}
      */
-    @Override public void generateGraph(
-        Graph<V, E> target,
-        VertexFactory<V> vertexFactory,
-        Map<String, V> resultMap)
+    @Override
+    public void generateGraph(
+        Graph<V, E> target, VertexFactory<V> vertexFactory, Map<String, V> resultMap)
     {
         V lastVertex = null;
 

@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2013-2017, by Nikolay Ognyanov and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,39 +15,19 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * PatonCycleBase.java
- * -------------------------
- * (C) Copyright 2013, by Nikolay Ognyanov
- *
- * Original Author: Nikolay Ognyanov
- * Contributor(s) :
- *
- * $Id$
- *
- * Changes
- * -------
- * 06-Sep-2013 : Initial revision (NO);
- */
 package org.jgrapht.alg.cycle;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.UndirectedGraph;
-
+import org.jgrapht.*;
 
 /**
  * Find a cycle base of an undirected graph using the Paton's algorithm.
  *
- * <p>See:<br>
- * K. Paton, An algorithm for finding a fundamental set of cycles for an
- * undirected linear graph, Comm. ACM 12 (1969), pp. 514-518.
+ * <p>
+ * See:<br>
+ * K. Paton, An algorithm for finding a fundamental set of cycles for an undirected linear graph,
+ * Comm. ACM 12 (1969), pp. 514-518.
  *
  * @param <V> the vertex type.
  * @param <E> the edge type.
@@ -61,11 +37,7 @@ import org.jgrapht.UndirectedGraph;
 public class PatonCycleBase<V, E>
     implements UndirectedCycleBase<V, E>
 {
-    
-
     private UndirectedGraph<V, E> graph;
-
-    
 
     /**
      * Create a cycle base finder with an unspecified graph.
@@ -90,12 +62,11 @@ public class PatonCycleBase<V, E>
         this.graph = graph;
     }
 
-    
-
     /**
      * {@inheritDoc}
      */
-    @Override public UndirectedGraph<V, E> getGraph()
+    @Override
+    public UndirectedGraph<V, E> getGraph()
     {
         return graph;
     }
@@ -103,7 +74,8 @@ public class PatonCycleBase<V, E>
     /**
      * {@inheritDoc}
      */
-    @Override public void setGraph(UndirectedGraph<V, E> graph)
+    @Override
+    public void setGraph(UndirectedGraph<V, E> graph)
     {
         if (graph == null) {
             throw new IllegalArgumentException("Null graph argument.");
@@ -114,15 +86,16 @@ public class PatonCycleBase<V, E>
     /**
      * {@inheritDoc}
      */
-    @Override public List<List<V>> findCycleBase()
+    @Override
+    public List<List<V>> findCycleBase()
     {
         if (graph == null) {
             throw new IllegalArgumentException("Null graph.");
         }
-        Map<V, Set<V>> used = new HashMap<V, Set<V>>();
-        Map<V, V> parent = new HashMap<V, V>();
-        ArrayDeque<V> stack = new ArrayDeque<V>();
-        List<List<V>> cycles = new ArrayList<List<V>>();
+        Map<V, Set<V>> used = new HashMap<>();
+        Map<V, V> parent = new HashMap<>();
+        ArrayDeque<V> stack = new ArrayDeque<>();
+        List<List<V>> cycles = new ArrayList<>();
 
         for (V root : graph.vertexSet()) {
             // Loop over the connected
@@ -137,7 +110,7 @@ public class PatonCycleBase<V, E>
 
             // Prepare to walk the spanning tree.
             parent.put(root, root);
-            used.put(root, new HashSet<V>());
+            used.put(root, new HashSet<>());
             stack.push(root);
 
             // Do the walk. It is a BFS with
@@ -155,19 +128,19 @@ public class PatonCycleBase<V, E>
                     if (!used.containsKey(neighbor)) {
                         // found a new node
                         parent.put(neighbor, current);
-                        Set<V> neighbourUsed = new HashSet<V>();
+                        Set<V> neighbourUsed = new HashSet<>();
                         neighbourUsed.add(current);
                         used.put(neighbor, neighbourUsed);
                         stack.push(neighbor);
                     } else if (neighbor.equals(current)) {
                         // found a self loop
-                        List<V> cycle = new ArrayList<V>();
+                        List<V> cycle = new ArrayList<>();
                         cycle.add(current);
                         cycles.add(cycle);
                     } else if (!currentUsed.contains(neighbor)) {
                         // found a cycle
                         Set<V> neighbourUsed = used.get(neighbor);
-                        List<V> cycle = new ArrayList<V>();
+                        List<V> cycle = new ArrayList<>();
                         cycle.add(neighbor);
                         cycle.add(current);
                         V p = parent.get(current);

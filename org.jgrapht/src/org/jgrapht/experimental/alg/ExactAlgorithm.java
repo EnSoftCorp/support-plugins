@@ -1,4 +1,9 @@
-/* This program and the accompanying materials are dual-licensed under
+/*
+ * (C) Copyright 2016-2017, by Barak Naveh and Contributors.
+ *
+ * JGraphT : a free Java graph-theory library
+ *
+ * This program and the accompanying materials are dual-licensed under
  * either
  *
  * (a) the terms of the GNU Lesser General Public License version 2.1
@@ -12,13 +17,22 @@
  */
 package org.jgrapht.experimental.alg;
 
-import java.util.Map;
+import java.util.*;
 
-
+/**
+ * An interface for an exact algorithm.
+ *
+ * @param <ResultType> type of the result
+ * @param <V> type of the input
+ */
 public interface ExactAlgorithm<ResultType, V>
 {
-    
-
+    /**
+     * Get the result.
+     * 
+     * @param optionalData optional data
+     * @return the result
+     */
     ResultType getResult(Map<V, Object> optionalData);
 }
 

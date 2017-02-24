@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2013-2017, by Nikolay Ognyanov and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,40 +15,19 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * TiernanSimpleCycles.java
- * -------------------------
- * (C) Copyright 2013, by Nikolay Ognyanov
- *
- * Original Author: Nikolay Ognyanov
- * Contributor(s) :
- *
- * $Id$
- *
- * Changes
- * -------
- * 06-Sep-2013 : Initial revision (NO);
- */
 package org.jgrapht.alg.cycle;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.DirectedGraph;
-
+import org.jgrapht.*;
 
 /**
  * Find all simple cycles of a directed graph using the Tiernan's algorithm.
  *
- * <p>See:<br>
- * J.C.Tiernan An Efficient Search Algorithm Find the Elementary Circuits of a
- * Graph., Communications of the ACM, vol.13, 12, (1970), pp. 722 - 726.
+ * <p>
+ * See:<br>
+ * J.C.Tiernan An Efficient Search Algorithm Find the Elementary Circuits of a Graph.,
+ * Communications of the ACM, vol.13, 12, (1970), pp. 722 - 726.
  *
  * @param <V> the vertex type.
  * @param <E> the edge type.
@@ -62,11 +37,7 @@ import org.jgrapht.DirectedGraph;
 public class TiernanSimpleCycles<V, E>
     implements DirectedSimpleCycles<V, E>
 {
-    
-
     private DirectedGraph<V, E> graph;
-
-    
 
     /**
      * Create a simple cycle finder with an unspecified graph.
@@ -91,12 +62,11 @@ public class TiernanSimpleCycles<V, E>
         this.graph = graph;
     }
 
-    
-
     /**
      * {@inheritDoc}
      */
-    @Override public DirectedGraph<V, E> getGraph()
+    @Override
+    public DirectedGraph<V, E> getGraph()
     {
         return graph;
     }
@@ -104,7 +74,8 @@ public class TiernanSimpleCycles<V, E>
     /**
      * {@inheritDoc}
      */
-    @Override public void setGraph(DirectedGraph<V, E> graph)
+    @Override
+    public void setGraph(DirectedGraph<V, E> graph)
     {
         if (graph == null) {
             throw new IllegalArgumentException("Null graph argument.");
@@ -115,20 +86,21 @@ public class TiernanSimpleCycles<V, E>
     /**
      * {@inheritDoc}
      */
-    @Override public List<List<V>> findSimpleCycles()
+    @Override
+    public List<List<V>> findSimpleCycles()
     {
         if (graph == null) {
             throw new IllegalArgumentException("Null graph.");
         }
-        Map<V, Integer> indices = new HashMap<V, Integer>();
-        List<V> path = new ArrayList<V>();
-        Set<V> pathSet = new HashSet<V>();
-        Map<V, Set<V>> blocked = new HashMap<V, Set<V>>();
-        List<List<V>> cycles = new LinkedList<List<V>>();
+        Map<V, Integer> indices = new HashMap<>();
+        List<V> path = new ArrayList<>();
+        Set<V> pathSet = new HashSet<>();
+        Map<V, Set<V>> blocked = new HashMap<>();
+        List<List<V>> cycles = new LinkedList<>();
 
         int index = 0;
         for (V v : graph.vertexSet()) {
-            blocked.put(v, new HashSet<V>());
+            blocked.put(v, new HashSet<>());
             indices.put(v, index++);
         }
 
@@ -137,11 +109,11 @@ public class TiernanSimpleCycles<V, E>
             return cycles;
         }
 
-        V startOfPath = null;
-        V endOfPath = null;
-        V temp = null;
-        int endIndex = 0;
-        boolean extensionFound = false;
+        V startOfPath;
+        V endOfPath;
+        V temp;
+        int endIndex;
+        boolean extensionFound;
 
         endOfPath = vertexIterator.next();
         path.add(endOfPath);
@@ -157,12 +129,8 @@ public class TiernanSimpleCycles<V, E>
                 extensionFound = false;
                 for (E e : graph.outgoingEdgesOf(endOfPath)) {
                     V n = graph.getEdgeTarget(e);
-                    int cmp =
-                        indices.get(n).compareTo(indices.get(path.get(0)));
-                    if ((cmp > 0)
-                        && !pathSet.contains(n)
-                        && !blocked.get(endOfPath).contains(n))
-                    {
+                    int cmp = indices.get(n).compareTo(indices.get(path.get(0)));
+                    if ((cmp > 0) && !pathSet.contains(n) && !blocked.get(endOfPath).contains(n)) {
                         path.add(n);
                         pathSet.add(n);
                         endOfPath = n;
@@ -175,7 +143,7 @@ public class TiernanSimpleCycles<V, E>
             // circuit confirmation
             startOfPath = path.get(0);
             if (graph.containsEdge(endOfPath, startOfPath)) {
-                List<V> cycle = new ArrayList<V>();
+                List<V> cycle = new ArrayList<>();
                 cycle.addAll(path);
                 cycles.add(cycle);
             }

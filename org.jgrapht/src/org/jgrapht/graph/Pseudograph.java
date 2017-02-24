@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2003-2017, by Barak Naveh and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,46 +15,26 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* ----------------
- * Pseudograph.java
- * ----------------
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
- *
- * Original Author:  Barak Naveh
- * Contributor(s):   Christian Hammer
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Aug-2003 : Initial revision (BN);
- * 11-Mar-2004 : Made generic (CH);
- * 28-May-2006 : Moved connectivity info from edge to graph (JVS);
- *
- */
 package org.jgrapht.graph;
 
-import org.jgrapht.EdgeFactory;
-import org.jgrapht.UndirectedGraph;
-import org.jgrapht.graph.builder.UndirectedGraphBuilder;
-import org.jgrapht.graph.builder.UndirectedGraphBuilderBase;
-
+import org.jgrapht.*;
+import org.jgrapht.graph.builder.*;
 
 /**
- * A pseudograph. A pseudograph is a non-simple undirected graph in which both
- * graph loops and multiple edges are permitted. If you're unsure about
- * pseudographs, see: <a href="http://mathworld.wolfram.com/Pseudograph.html">
+ * A pseudograph. A pseudograph is a non-simple undirected graph in which both graph loops and
+ * multiple edges are permitted. If you're unsure about pseudographs, see:
+ * <a href="http://mathworld.wolfram.com/Pseudograph.html">
  * http://mathworld.wolfram.com/Pseudograph.html</a>.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ *
  */
 public class Pseudograph<V, E>
     extends AbstractBaseGraph<V, E>
     implements UndirectedGraph<V, E>
 {
-    
-
     private static final long serialVersionUID = 3833183614484755253L;
-
-    
 
     /**
      * Creates a new pseudograph.
@@ -67,7 +43,7 @@ public class Pseudograph<V, E>
      */
     public Pseudograph(Class<? extends E> edgeClass)
     {
-        this(new ClassBasedEdgeFactory<V, E>(edgeClass));
+        this(new ClassBasedEdgeFactory<>(edgeClass));
     }
 
     /**
@@ -80,20 +56,32 @@ public class Pseudograph<V, E>
         super(ef, true, true);
     }
 
-    
-
-    public static <V, E> UndirectedGraphBuilderBase<V,
-        E, ? extends Pseudograph<V, E>, ?> builder(Class<? extends E> edgeClass)
+    /**
+     * Create a builder for this kind of graph.
+     * 
+     * @param edgeClass class on which to base factory for edges
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
+     * @return a builder for this kind of graph
+     */
+    public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(
+        Class<? extends E> edgeClass)
     {
-        return new UndirectedGraphBuilder<V, E, Pseudograph<V, E>>(
-            new Pseudograph<V, E>(edgeClass));
+        return new UndirectedGraphBuilder<>(new Pseudograph<>(edgeClass));
     }
 
-    public static <V, E> UndirectedGraphBuilderBase<V,
-        E, ? extends Pseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)
+    /**
+     * Create a builder for this kind of graph.
+     * 
+     * @param ef the edge factory of the new graph
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
+     * @return a builder for this kind of graph
+     */
+    public static <V, E> UndirectedGraphBuilderBase<V, E, ? extends Pseudograph<V, E>, ?> builder(
+        EdgeFactory<V, E> ef)
     {
-        return new UndirectedGraphBuilder<V, E, Pseudograph<V, E>>(
-            new Pseudograph<V, E>(ef));
+        return new UndirectedGraphBuilder<>(new Pseudograph<>(ef));
     }
 }
 

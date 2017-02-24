@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2007-2017, by France Telecom and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,27 +15,14 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * ClassBasedVertexFactory.java
- * -------------------------
- * (C) Copyright 2007-2008, by France Telecom
- *
- * Original Author:  Guillaume Boulmier and Contributors.
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Jun-2007 : Initial revision (GB);
- *
- */
 package org.jgrapht.graph;
 
-import org.jgrapht.VertexFactory;
-
+import org.jgrapht.*;
 
 /**
  * A {@link VertexFactory} for producing vertices by using a class as a factory.
+ *
+ * @param <V> the graph vertex type
  *
  * @author Guillaume Boulmier
  * @since July 5, 2007
@@ -47,23 +30,23 @@ import org.jgrapht.VertexFactory;
 public class ClassBasedVertexFactory<V>
     implements VertexFactory<V>
 {
-    
-
     private final Class<? extends V> vertexClass;
 
-    
-
+    /**
+     * Create a new class based vertex factory.
+     * 
+     * @param vertexClass the vertex class
+     */
     public ClassBasedVertexFactory(Class<? extends V> vertexClass)
     {
         this.vertexClass = vertexClass;
     }
 
-    
-
     /**
      * @see VertexFactory#createVertex()
      */
-    @Override public V createVertex()
+    @Override
+    public V createVertex()
     {
         try {
             return this.vertexClass.newInstance();

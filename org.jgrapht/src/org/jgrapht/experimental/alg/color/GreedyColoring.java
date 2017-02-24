@@ -1,4 +1,9 @@
-/* This program and the accompanying materials are dual-licensed under
+/*
+ * (C) Copyright 2016-2017, by Barak Naveh and Contributors.
+ *
+ * JGraphT : a free Java graph-theory library
+ *
+ * This program and the accompanying materials are dual-licensed under
  * either
  *
  * (a) the terms of the GNU Lesser General Public License version 2.1
@@ -12,37 +17,32 @@
  */
 package org.jgrapht.experimental.alg.color;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.experimental.alg.ApproximationAlgorithm;
-import org.jgrapht.experimental.alg.IntArrayGraphAlgorithm;
+import org.jgrapht.*;
+import org.jgrapht.experimental.alg.*;
 
-
+/**
+ * Compute greedy graph colorings.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ */
 public class GreedyColoring<V, E>
     extends IntArrayGraphAlgorithm<V, E>
     implements ApproximationAlgorithm<Integer, V>
 {
-    
-
     public static final int BEST_ORDER = 0;
     public static final int NATURAL_ORDER = 1;
     public static final int SMALLEST_DEGREE_LAST_ORDER = 2;
     public static final int LARGEST_SATURATION_FIRST_ORDER = 3;
 
-    
-
     private int _order = BEST_ORDER;
 
-    
-
     /**
-     * @param g
+     * Create a new greedy coloring algorithm
+     * 
+     * @param g the graph
      */
     public GreedyColoring(final Graph<V, E> g)
     {
@@ -50,7 +50,10 @@ public class GreedyColoring<V, E>
     }
 
     /**
-     * @param g
+     * Create a new greedy coloring algorithm
+     * 
+     * @param g the graph
+     * @param method the method to use
      */
     public GreedyColoring(final Graph<V, E> g, final int method)
     {
@@ -58,11 +61,9 @@ public class GreedyColoring<V, E>
         _order = method;
     }
 
-    
-
-    int color(int [] order)
+    int color(int[] order)
     {
-        final int [] color = new int[_neighbors.length];
+        final int[] color = new int[_neighbors.length];
         int maxColor = 1;
         BitSet usedColors = new BitSet(_neighbors.length);
 
@@ -83,16 +84,15 @@ public class GreedyColoring<V, E>
         return maxColor;
     }
 
-    int [] smallestDegreeLastOrder()
+    int[] smallestDegreeLastOrder()
     {
-        final int [] order = new int[_neighbors.length];
-        final int [] degree = new int[_neighbors.length];
-        final List<List<Integer>> buckets =
-            new ArrayList<List<Integer>>(_neighbors.length);
+        final int[] order = new int[_neighbors.length];
+        final int[] degree = new int[_neighbors.length];
+        final List<List<Integer>> buckets = new ArrayList<>(_neighbors.length);
         int index = _neighbors.length - 1;
 
         for (int i = 0; i < _neighbors.length; i++) {
-            buckets.add(new ArrayList<Integer>());
+            buckets.add(new ArrayList<>());
             degree[i] = _neighbors[i].length;
         }
         for (int i = 0; i < _neighbors.length; i++) {
@@ -101,7 +101,7 @@ public class GreedyColoring<V, E>
         for (int i = 0; i < _neighbors.length; i++) {
             while (buckets.get(i).size() > 0) {
                 final int s = buckets.get(i).size() - 1;
-                final int vertex = (Integer) buckets.get(i).get(s);
+                final int vertex = buckets.get(i).get(s);
                 buckets.get(i).remove(s);
                 degree[vertex] = -1;
                 order[index--] = vertex;
@@ -121,12 +121,12 @@ public class GreedyColoring<V, E>
         return order;
     }
 
-    int [] largestSaturationFirstOrder()
+    int[] largestSaturationFirstOrder()
     {
-        final int [] satur = new int[_neighbors.length];
-        final int [] buckets = new int[_neighbors.length];
-        final int [] cumBucketSize = new int[_neighbors.length];
-        final int [] bucketIndex = new int[_neighbors.length];
+        final int[] satur = new int[_neighbors.length];
+        final int[] buckets = new int[_neighbors.length];
+        final int[] cumBucketSize = new int[_neighbors.length];
+        final int[] bucketIndex = new int[_neighbors.length];
         int index = 0;
         int maxSat = 0;
 
@@ -136,10 +136,7 @@ public class GreedyColoring<V, E>
         }
         cumBucketSize[0] = _neighbors.length;
         while (index < _neighbors.length) {
-            while (
-                (maxSat > 0)
-                && (cumBucketSize[maxSat] == cumBucketSize[maxSat - 1]))
-            {
+            while ((maxSat > 0) && (cumBucketSize[maxSat] == cumBucketSize[maxSat - 1])) {
                 cumBucketSize[maxSat--] = 0;
             }
             final int v = buckets[cumBucketSize[maxSat] - 1];
@@ -147,7 +144,7 @@ public class GreedyColoring<V, E>
             satur[v] = -1;
             index++;
             for (int j = 0; j < _neighbors[v].length; j++) {
-                final int nb = (int) _neighbors[v][j];
+                final int nb = _neighbors[v][j];
                 final int bi = bucketIndex[nb];
                 if (satur[nb] >= 0) {
                     if (bi != (cumBucketSize[satur[nb]] - 1)) {
@@ -159,8 +156,7 @@ public class GreedyColoring<V, E>
                     cumBucketSize[satur[nb]]--;
                     satur[nb]++;
                     if (cumBucketSize[satur[nb]] == 0) {
-                        cumBucketSize[satur[nb]] =
-                            cumBucketSize[satur[nb] - 1] + 1;
+                        cumBucketSize[satur[nb]] = cumBucketSize[satur[nb] - 1] + 1;
                     }
                     if (satur[nb] > maxSat) {
                         maxSat = satur[nb];
@@ -172,12 +168,14 @@ public class GreedyColoring<V, E>
         return buckets;
     }
 
-    @Override public Integer getLowerBound(Map<V, Object> optionalData)
+    @Override
+    public Integer getLowerBound(Map<V, Object> optionalData)
     {
         return 0;
     }
 
-    @Override public Integer getUpperBound(Map<V, Object> optionalData)
+    @Override
+    public Integer getUpperBound(Map<V, Object> optionalData)
     {
         switch (_order) {
         case BEST_ORDER:
@@ -194,7 +192,8 @@ public class GreedyColoring<V, E>
         return _neighbors.length;
     }
 
-    @Override public boolean isExact()
+    @Override
+    public boolean isExact()
     {
         return false;
     }

@@ -1,4 +1,9 @@
-/* This program and the accompanying materials are dual-licensed under
+/*
+ * (C) Copyright 2016-2017, by micha and Contributors.
+ *
+ * JGraphT : a free Java graph-theory library
+ *
+ * This program and the accompanying materials are dual-licensed under
  * either
  *
  * (a) the terms of the GNU Lesser General Public License version 2.1
@@ -10,44 +15,39 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/**
- *
- */
 package org.jgrapht.experimental.alg.color;
 
-import java.util.BitSet;
-import java.util.Map;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.experimental.alg.ExactAlgorithm;
-import org.jgrapht.experimental.alg.IntArrayGraphAlgorithm;
-
+import org.jgrapht.*;
+import org.jgrapht.experimental.alg.*;
 
 /**
+ * Brown graph coloring algorithm.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ * 
  * @author micha
  */
 public class BrownBacktrackColoring<V, E>
     extends IntArrayGraphAlgorithm<V, E>
     implements ExactAlgorithm<Integer, V>
 {
-    
-
-    private int [] _color;
-    private int [] _colorCount;
-    private BitSet [] _allowedColors;
+    private int[] _color;
+    private int[] _colorCount;
+    private BitSet[] _allowedColors;
     private int _chi;
 
-    
-
     /**
-     * @param g
+     * Construct a new Brown backtracking algorithm.
+     * 
+     * @param g the input graph
      */
     public BrownBacktrackColoring(final Graph<V, E> g)
     {
         super(g);
     }
-
-    
 
     void recursiveColor(int pos)
     {
@@ -59,12 +59,7 @@ public class BrownBacktrackColoring<V, E>
                 _allowedColors[pos].clear(_color[nb]);
             }
         }
-        for (
-            int i = 1;
-            (i <= _colorCount[pos])
-            && (_colorCount[pos] < _chi);
-            i++)
-        {
+        for (int i = 1; (i <= _colorCount[pos]) && (_colorCount[pos] < _chi); i++) {
             if (_allowedColors[pos].get(i)) {
                 _color[pos] = i;
                 if (pos < (_neighbors.length - 1)) {
@@ -86,10 +81,11 @@ public class BrownBacktrackColoring<V, E>
         _color[pos] = 0;
     }
 
-    /* (non-Javadoc)
-     * @see org.jgrapht.experimental.alg.ExactAlgorithm#getResult()
+    /**
+     * {@inheritDoc}
      */
-    @Override public Integer getResult(Map<V, Object> additionalData)
+    @Override
+    public Integer getResult(Map<V, Object> additionalData)
     {
         _chi = _neighbors.length;
         _color = new int[_neighbors.length];

@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2009-2017, by Ilya Razenshteyn and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2009, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,64 +15,61 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * DirectedGraphUnion.java
- * -------------------------
- * (C) Copyright 2009-2009, by Ilya Razenshteyn
- *
- * Original Author:  Ilya Razenshteyn and Contributors.
- *
- * $Id$
- *
- * Changes
- * -------
- * 02-Feb-2009 : Initial revision (IR);
- *
- */
 package org.jgrapht.graph;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.DirectedGraph;
-import org.jgrapht.util.WeightCombiner;
+import org.jgrapht.*;
+import org.jgrapht.util.*;
 
-
+/**
+ * A union of directed graphs.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ */
 public class DirectedGraphUnion<V, E>
     extends GraphUnion<V, E, DirectedGraph<V, E>>
     implements DirectedGraph<V, E>
 {
-    
-
     private static final long serialVersionUID = -740199233080172450L;
 
-    
-
+    /**
+     * Construct a new directed graph union.
+     * 
+     * @param g1 the first graph
+     * @param g2 the second graph
+     * @param operator the weight combiner (policy for edge weight calculation)
+     */
     public DirectedGraphUnion(
-        DirectedGraph<V, E> g1,
-        DirectedGraph<V, E> g2,
-        WeightCombiner operator)
+        DirectedGraph<V, E> g1, DirectedGraph<V, E> g2, WeightCombiner operator)
     {
         super(g1, g2, operator);
     }
 
+    /**
+     * Construct a new directed graph union. The union will use the {@link WeightCombiner#SUM}
+     * weight combiner.
+     * 
+     * @param g1 the first graph
+     * @param g2 the second graph
+     */
     public DirectedGraphUnion(DirectedGraph<V, E> g1, DirectedGraph<V, E> g2)
     {
         super(g1, g2);
     }
 
-    
-
-    @Override public int inDegreeOf(V vertex)
+    @Override
+    public int inDegreeOf(V vertex)
     {
         Set<E> res = incomingEdgesOf(vertex);
         return res.size();
     }
 
-    @Override public Set<E> incomingEdgesOf(V vertex)
+    @Override
+    public Set<E> incomingEdgesOf(V vertex)
     {
-        Set<E> res = new HashSet<E>();
+        Set<E> res = new HashSet<>();
         if (getG1().containsVertex(vertex)) {
             res.addAll(getG1().incomingEdgesOf(vertex));
         }
@@ -86,15 +79,17 @@ public class DirectedGraphUnion<V, E>
         return Collections.unmodifiableSet(res);
     }
 
-    @Override public int outDegreeOf(V vertex)
+    @Override
+    public int outDegreeOf(V vertex)
     {
         Set<E> res = outgoingEdgesOf(vertex);
         return res.size();
     }
 
-    @Override public Set<E> outgoingEdgesOf(V vertex)
+    @Override
+    public Set<E> outgoingEdgesOf(V vertex)
     {
-        Set<E> res = new HashSet<E>();
+        Set<E> res = new HashSet<>();
         if (getG1().containsVertex(vertex)) {
             res.addAll(getG1().outgoingEdgesOf(vertex));
         }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.jgrapht.feature.group"
+      id="org.jgrapht.feature"
       label="JGraphT"
-      version="0.9.1.qualifier"
+      version="1.0.1.qualifier"
       provider-name="org.jgrapht">
 
    <description url="https://github.com/jgrapht/jgrapht">
@@ -15,7 +15,7 @@
 
    <license url="https://github.com/jgrapht/jgrapht/blob/master/license-LGPL.txt">
       GNU LESSER GENERAL PUBLIC LICENSE
-		       Version 2.1, February 1999
+         Version 2.1, February 1999
 
  Copyright (C) 1991, 1999 Free Software Foundation, Inc.
      51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA

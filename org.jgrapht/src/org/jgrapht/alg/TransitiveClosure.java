@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2007-2017, by Vinayak R Borkar and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,26 +15,17 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* ----------------------
- * TransitiveClosure.java
- * ----------------------
- * (C) Copyright 2007, by Vinayak R. Borkar.
- *
- * Original Author:   Vinayak R. Borkar
- * Contributor(s):
- *
- * Changes
- * -------
- * 5-May-2007: Initial revision (VRB);
- *
- */
 package org.jgrapht.alg;
 
+import org.jgrapht.Graphs;
+import org.jgrapht.experimental.dag.DirectedAcyclicGraph;
+import org.jgrapht.graph.SimpleDirectedGraph;
+import org.jgrapht.traverse.TopologicalOrderIterator;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.jgrapht.graph.SimpleDirectedGraph;
-
 
 /**
  * Constructs the transitive closure of the input graph.
@@ -48,14 +35,10 @@ import org.jgrapht.graph.SimpleDirectedGraph;
  */
 public class TransitiveClosure
 {
-    
-
     /**
      * Singleton instance.
      */
     public static final TransitiveClosure INSTANCE = new TransitiveClosure();
-
-    
 
     /**
      * Private Constructor.
@@ -64,18 +47,18 @@ public class TransitiveClosure
     {
     }
 
-    
-
     /**
      * Computes the transitive closure of the given graph.
      *
      * @param graph - Graph to compute transitive closure for.
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
      */
     public <V, E> void closeSimpleDirectedGraph(SimpleDirectedGraph<V, E> graph)
     {
         Set<V> vertexSet = graph.vertexSet();
 
-        Set<V> newEdgeTargets = new HashSet<V>();
+        Set<V> newEdgeTargets = new HashSet<>();
 
         // At every iteration of the outer loop, we add a path of length 1
         // between nodes that originally had a path of length 2. In the worst
@@ -131,6 +114,28 @@ public class TransitiveClosure
 
         return result;
     }
+
+    /**
+     * Computes the transitive closure of a directed acyclic graph in O(n*m)
+     *
+     * @param graph - Graph to compute transitive closure for.
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
+     */
+    public <V, E> void closeDirectedAcyclicGraph(DirectedAcyclicGraph<V, E> graph)
+    {
+        Deque<V> orderedVertices = new ArrayDeque<>(graph.vertexSet().size());
+        new TopologicalOrderIterator<>(graph).forEachRemaining(orderedVertices::addFirst);
+
+        for (V vertex : orderedVertices) {
+            for (V successor : Graphs.successorListOf(graph, vertex)) {
+                for (V closureVertex : Graphs.successorListOf(graph, successor)) {
+                    graph.addEdge(vertex, closureVertex);
+                }
+            }
+        }
+    }
+
 }
 
 // End TransitiveClosure.java

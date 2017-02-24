@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2007-2017, by France Telecom and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2010, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,49 +15,32 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * KShortestPaths.java
- * -------------------------
- * (C) Copyright 2007-2010, by France Telecom
- *
- * Original Author:  Guillaume Boulmier and Contributors.
- * Contributor(s):   John V. Sichi
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Jun-2007 : Initial revision (GB);
- * 05-Jul-2007 : Added support for generics (JVS);
- * 06-Dec-2010 : Bugfixes (GB);
- *
- */
 package org.jgrapht.alg;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.GraphPath;
-
+import org.jgrapht.*;
 
 /**
- * The algorithm determines the k shortest simple paths in increasing order of
- * weight. Weights can be negative (but no negative cycle is allowed), and paths
- * can be constrained by a maximum number of edges. Multigraphs are allowed.
+ * The algorithm determines the k shortest simple paths in increasing order of weight. Weights can
+ * be negative (but no negative cycle is allowed), and paths can be constrained by a maximum number
+ * of edges. Multigraphs are allowed.
  *
- * <p>The algorithm is a variant of the Bellman-Ford algorithm but instead of
- * only storing the best path it stores the "k" best paths at each pass,
- * yielding a complexity of O(k*n*(m^2)) where m is the number of edges and n is
- * the number of vertices.
+ * <p>
+ * The algorithm is a variant of the Bellman-Ford algorithm but instead of only storing the best
+ * path it stores the "k" best paths at each pass, yielding a complexity of O(k*n*(m^2)) where m is
+ * the number of edges and n is the number of vertices.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author Guillaume Boulmier
  * @since July 5, 2007
+ * @deprecated Use {@link org.jgrapht.alg.shortestpath.KShortestPaths} instead.
  */
+@Deprecated
 public class KShortestPaths<V, E>
 {
-    
-
     /**
      * Graph on which shortest paths are searched.
      */
@@ -73,41 +52,75 @@ public class KShortestPaths<V, E>
 
     private V startVertex;
 
-    
+    private PathValidator<V, E> pathValidator;
 
     /**
-     * Creates an object to compute ranking shortest paths between the start
-     * vertex and others vertices.
+     * Creates an object to compute ranking shortest paths between the start vertex and others
+     * vertices.
      *
-     * @param graph
-     * @param startVertex
+     * @param graph graph on which shortest paths are searched.
+     * @param startVertex start vertex of the calculated paths.
      * @param k number of paths to be computed.
      */
     public KShortestPaths(Graph<V, E> graph, V startVertex, int k)
     {
-        this(graph, startVertex, k, graph.vertexSet().size() - 1);
+        this(graph, startVertex, k, null);
     }
 
     /**
-     * Creates an object to calculate ranking shortest paths between the start
-     * vertex and others vertices.
+     * Creates an object to compute ranking shortest paths between the start vertex and others
+     * vertices. Providing non-null path validator may be used to accept/deny paths according to
+     * some external logic. These validations will be used in addition to the basic path validations
+     * - that the path is from start to target with no loops.
      *
      * @param graph graph on which shortest paths are searched.
      * @param startVertex start vertex of the calculated paths.
-     * @param nPaths number of ranking paths between the start vertex and an end
-     * vertex.
+     * @param k number of paths to be computed.
+     * @param pathValidator the path validator to use
+     */
+    public KShortestPaths(
+        Graph<V, E> graph, V startVertex, int k, PathValidator<V, E> pathValidator)
+    {
+        this(graph, startVertex, k, graph.vertexSet().size() - 1, pathValidator);
+    }
+
+    /**
+     * Creates an object to calculate ranking shortest paths between the start vertex and others
+     * vertices.
+     *
+     * @param graph graph on which shortest paths are searched.
+     * @param startVertex start vertex of the calculated paths.
+     * @param nPaths number of ranking paths between the start vertex and an end vertex.
      * @param nMaxHops maximum number of edges of the calculated paths.
      *
-     * @throws NullPointerException if the specified graph or startVertex is
-     * <code>null</code>.
+     * @throws NullPointerException if the specified graph or startVertex is <code>null</code>.
+     * @throws IllegalArgumentException if nPaths is negative or 0.
+     * @throws IllegalArgumentException if nMaxHops is negative or 0.
+     */
+    public KShortestPaths(Graph<V, E> graph, V startVertex, int nPaths, int nMaxHops)
+    {
+        this(graph, startVertex, nPaths, nMaxHops, null);
+    }
+
+    /**
+     * Creates an object to calculate ranking shortest paths between the start vertex and others
+     * vertices. Providing non-null path validator may be used to accept/deny paths according to
+     * some external logic. These validations will be used in addition to the basic path validations
+     * - that the path is from start to target with no loops.
+     *
+     * @param graph graph on which shortest paths are searched.
+     * @param startVertex start vertex of the calculated paths.
+     * @param nPaths number of ranking paths between the start vertex and an end vertex.
+     * @param nMaxHops maximum number of edges of the calculated paths.
+     * @param pathValidator the path validator to use
+     *
+     * @throws NullPointerException if the specified graph or startVertex is <code>null</code>.
      * @throws IllegalArgumentException if nPaths is negative or 0.
      * @throws IllegalArgumentException if nMaxHops is negative or 0.
      */
     public KShortestPaths(
-        Graph<V, E> graph,
-        V startVertex,
-        int nPaths,
-        int nMaxHops)
+        Graph<V, E> graph, V startVertex, int nPaths, int nMaxHops,
+        PathValidator<V, E> pathValidator)
     {
         assertKShortestPathsFinder(graph, startVertex, nPaths, nMaxHops);
 
@@ -115,37 +128,27 @@ public class KShortestPaths<V, E>
         this.startVertex = startVertex;
         this.nPaths = nPaths;
         this.nMaxHops = nMaxHops;
+        this.pathValidator = pathValidator;
     }
-
-    
 
     /**
      * Returns the k shortest simple paths in increasing order of weight.
      *
      * @param endVertex target vertex of the calculated paths.
      *
-     * @return list of paths, or <code>null</code> if no path exists between the
-     * start vertex and the end vertex.
+     * @return list of paths, or <code>null</code> if no path exists between the start vertex and
+     *         the end vertex.
      */
     public List<GraphPath<V, E>> getPaths(V endVertex)
     {
         assertGetPaths(endVertex);
 
-        KShortestPathsIterator<V, E> iter =
-            new KShortestPathsIterator<V, E>(
-                this.graph,
-                this.startVertex,
-                endVertex,
-                this.nPaths);
+        KShortestPathsIterator<V, E> iter = new KShortestPathsIterator<>(
+            this.graph, this.startVertex, endVertex, this.nPaths, this.pathValidator);
 
         // at the i-th pass the shortest paths with less (or equal) than i edges
         // are calculated.
-        for (
-            int passNumber = 1;
-            (passNumber <= this.nMaxHops)
-            && iter.hasNext();
-            passNumber++)
-        {
+        for (int passNumber = 1; (passNumber <= this.nMaxHops) && iter.hasNext(); passNumber++) {
             iter.next();
         }
 
@@ -155,7 +158,7 @@ public class KShortestPaths<V, E>
             return null;
         }
 
-        List<GraphPath<V, E>> pathList = new ArrayList<GraphPath<V, E>>();
+        List<GraphPath<V, E>> pathList = new ArrayList<>();
 
         for (RankingPathElement<V, E> element : list) {
             pathList.add(new PathWrapper(element));
@@ -170,20 +173,15 @@ public class KShortestPaths<V, E>
             throw new NullPointerException("endVertex is null");
         }
         if (endVertex.equals(this.startVertex)) {
-            throw new IllegalArgumentException(
-                "The end vertex is the same as the start vertex!");
+            throw new IllegalArgumentException("The end vertex is the same as the start vertex!");
         }
         if (!this.graph.vertexSet().contains(endVertex)) {
-            throw new IllegalArgumentException(
-                "Graph must contain the end vertex!");
+            throw new IllegalArgumentException("Graph must contain the end vertex!");
         }
     }
 
     private void assertKShortestPathsFinder(
-        Graph<V, E> graph,
-        V startVertex,
-        int nPaths,
-        int nMaxHops)
+        Graph<V, E> graph, V startVertex, int nPaths, int nMaxHops)
     {
         if (graph == null) {
             throw new NullPointerException("graph is null");
@@ -199,8 +197,6 @@ public class KShortestPaths<V, E>
         }
     }
 
-    
-
     private class PathWrapper
         implements GraphPath<V, E>
     {
@@ -214,25 +210,29 @@ public class KShortestPaths<V, E>
         }
 
         // implement GraphPath
-        @Override public Graph<V, E> getGraph()
+        @Override
+        public Graph<V, E> getGraph()
         {
             return graph;
         }
 
         // implement GraphPath
-        @Override public V getStartVertex()
+        @Override
+        public V getStartVertex()
         {
             return startVertex;
         }
 
         // implement GraphPath
-        @Override public V getEndVertex()
+        @Override
+        public V getEndVertex()
         {
             return rankingPathElement.getVertex();
         }
 
         // implement GraphPath
-        @Override public List<E> getEdgeList()
+        @Override
+        public List<E> getEdgeList()
         {
             if (edgeList == null) {
                 edgeList = rankingPathElement.createEdgeListPath();
@@ -241,13 +241,15 @@ public class KShortestPaths<V, E>
         }
 
         // implement GraphPath
-        @Override public double getWeight()
+        @Override
+        public double getWeight()
         {
             return rankingPathElement.getWeight();
         }
 
         // override Object
-        @Override public String toString()
+        @Override
+        public String toString()
         {
             return getEdgeList().toString();
         }

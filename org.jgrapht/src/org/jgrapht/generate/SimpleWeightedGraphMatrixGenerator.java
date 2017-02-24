@@ -1,4 +1,9 @@
-/* This program and the accompanying materials are dual-licensed under
+/*
+ * (C) Copyright 2016-2017, by Barak Naveh and Contributors.
+ *
+ * JGraphT : a free Java graph-theory library
+ *
+ * This program and the accompanying materials are dual-licensed under
  * either
  *
  * (a) the terms of the GNU Lesser General Public License version 2.1
@@ -12,45 +17,36 @@
  */
 package org.jgrapht.generate;
 
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.jgrapht.VertexFactory;
-import org.jgrapht.WeightedGraph;
+import org.jgrapht.*;
 
-
+/**
+ * A simple weighted graph matrix generator.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ */
 public class SimpleWeightedGraphMatrixGenerator<V, E>
     extends WeightedGraphGeneratorAdapter<V, E, V>
 {
-    
-
     protected List<V> vertices;
 
-    
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
-    public static int [] range(final int from, final int to)
-    {
-        int [] range = new int[to - from];
-        for (int i = from; i < to; ++i) {
-            range[i - from] = i;
-        }
-        return range;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////////////////////
-
+    /**
+     * Set the generator vertices.
+     * 
+     * @param vertices the graph vertices
+     * @return the generator
+     */
     public SimpleWeightedGraphMatrixGenerator<V, E> vertices(List<V> vertices)
     {
         this.vertices = vertices;
         return this;
     }
 
-    @Override public void generateGraph(
-        WeightedGraph<V, E> target,
-        VertexFactory<V> vertexFactory,
-        Map<String, V> resultMap)
+    @Override
+    public void generateGraph(
+        WeightedGraph<V, E> target, VertexFactory<V> vertexFactory, Map<String, V> resultMap)
     {
         if (weights == null) {
             throw new IllegalArgumentException(
@@ -74,8 +70,7 @@ public class SimpleWeightedGraphMatrixGenerator<V, E>
             for (int j = 0; j < vertices.size(); ++j) {
                 if (i != j) {
                     target.setEdgeWeight(
-                        target.addEdge(vertices.get(i), vertices.get(j)),
-                        weights[i][j]);
+                        target.addEdge(vertices.get(i), vertices.get(j)), weights[i][j]);
                 }
             }
         }

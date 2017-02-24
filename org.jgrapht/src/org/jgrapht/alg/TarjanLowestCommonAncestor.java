@@ -1,4 +1,9 @@
-/* This program and the accompanying materials are dual-licensed under
+/*
+ * (C) Copyright 2016-2017, by Leo Crawford and Contributors.
+ *
+ * JGraphT : a free Java graph-theory library
+ *
+ * This program and the accompanying materials are dual-licensed under
  * either
  *
  * (a) the terms of the GNU Lesser General Public License version 2.1
@@ -12,66 +17,63 @@
  */
 package org.jgrapht.alg;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.alg.util.UnionFind;
-
+import org.jgrapht.*;
+import org.jgrapht.alg.util.*;
 
 /**
  * Used to calculate Tarjan's Lowest Common Ancestors Algorithm
  *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ *
  * @author Leo Crawford
  */
-
 public class TarjanLowestCommonAncestor<V, E>
 {
-    
-
     private Graph<V, E> g;
 
-    
-
     /**
-     * Create an instance with a reference to the graph that we will find LCAs
-     * for
+     * Create an instance with a reference to the graph that we will find LCAs for
+     * 
+     * @param g the input graph
      */
     public TarjanLowestCommonAncestor(Graph<V, E> g)
     {
         this.g = g;
     }
 
-    
-
     /**
-     * Calculate the LCM between <code>a</code> and <code>b</code> treating
-     * <code>start</code> as the root we want to search from.
+     * Calculate the LCM between <code>a</code> and <code>b</code> treating <code>start</code> as
+     * the root we want to search from.
+     * 
+     * @param start the root of subtree
+     * @param a the first vertex
+     * @param b the second vertex
+     * @return the least common ancestor
      */
     public V calculate(V start, V a, V b)
     {
-        List<LcaRequestResponse<V>> list =
-            new LinkedList<LcaRequestResponse<V>>();
-        list.add(new LcaRequestResponse<V>(a, b));
+        List<LcaRequestResponse<V>> list = new LinkedList<>();
+        list.add(new LcaRequestResponse<>(a, b));
         return calculate(start, list).get(0);
     }
 
     /**
      * Calculate the LCMs between a set of pairs (<code>a</code> and <code>
-     * b</code>) treating <code>start</code> as the root we want to search from,
-     * and setting the LCA of each pair in its LCA field
+     * b</code>) treating <code>start</code> as the root we want to search from, and setting the LCA
+     * of each pair in its LCA field
+     * 
+     * @param start the root of the subtree
+     * @param lrr a list of requests-response objects. The answer if stored on these objects at the
+     *        LCA field.
+     * @return the LCMs
      */
     public List<V> calculate(V start, List<LcaRequestResponse<V>> lrr)
     {
         return new Worker(lrr).calculate(start);
     }
-
-    
 
     /* The worker class keeps the state whilst doing calculations. */
     private class Worker
@@ -82,14 +84,14 @@ public class TarjanLowestCommonAncestor<V, E>
         // representative of the set containing u, and Union(u,v) merges the set
         // containing u with the set containing v. </block>
         // (http://en.wikipedia.org/wiki/Tarjan's_off-line_lowest_common_ancestors_algorithm)
-        private UnionFind<V> uf = new UnionFind<V>(Collections.<V>emptySet());
+        private UnionFind<V> uf = new UnionFind<>(Collections.<V> emptySet());
 
         // the ancestors. instead of <code>u.ancestor = x</code> we do
         // <code>ancestors.put(u,x)</code>
-        private Map<V, V> ancestors = new HashMap<V, V>();
+        private Map<V, V> ancestors = new HashMap<>();
 
         // instead of u.colour = black we do black.add(u)
-        private Set<V> black = new HashSet<V>();
+        private Set<V> black = new HashSet<>();
 
         // the two vertex that we want to find the LCA for
         private List<LcaRequestResponse<V>> lrr;
@@ -98,7 +100,7 @@ public class TarjanLowestCommonAncestor<V, E>
         private Worker(List<LcaRequestResponse<V>> lrr)
         {
             this.lrr = lrr;
-            this.lrrMap = new MultiMap<V>();
+            this.lrrMap = new MultiMap<>();
 
             // put in the reverse links from a and b entries back to the
             // LcaRequestReponse they're contained in
@@ -150,7 +152,7 @@ public class TarjanLowestCommonAncestor<V, E>
                 lrrMap.remove(u);
             }
 
-            List<V> result = new LinkedList<V>();
+            List<V> result = new LinkedList<>();
             for (LcaRequestResponse<V> current : lrr) {
                 result.add(current.getLca());
             }
@@ -158,26 +160,52 @@ public class TarjanLowestCommonAncestor<V, E>
         }
     }
 
+    /**
+     * Data transfer object for LCA request and response.
+     *
+     * @param <V> the graph vertex type
+     */
     public static class LcaRequestResponse<V>
     {
         private V a, b, lca;
 
+        /**
+         * Create a new LCA request response data transfer object.
+         * 
+         * @param a the first vertex of the request
+         * @param b the second vertex of the request
+         */
         public LcaRequestResponse(V a, V b)
         {
             this.a = a;
             this.b = b;
         }
 
+        /**
+         * Get the first vertex of the request
+         * 
+         * @return the first vertex of the request
+         */
         public V getA()
         {
             return a;
         }
 
+        /**
+         * Get the second vertex of the request
+         * 
+         * @return the second vertex of the request
+         */
         public V getB()
         {
             return b;
         }
 
+        /**
+         * Get the least common ancestor
+         * 
+         * @return the least common ancestor
+         */
         public V getLca()
         {
             return lca;
@@ -196,7 +224,7 @@ public class TarjanLowestCommonAncestor<V, E>
         public Set<LcaRequestResponse<V>> getOrCreate(V key)
         {
             if (!containsKey(key)) {
-                put(key, new HashSet<LcaRequestResponse<V>>());
+                put(key, new HashSet<>());
             }
             return get(key);
         }

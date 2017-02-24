@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2007-2017, by France Telecom and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,44 +15,25 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * RankingPathElement.java
- * -------------------------
- * (C) Copyright 2007-2008, by France Telecom
- *
- * Original Author:  Guillaume Boulmier and Contributors.
- * Contributor(s):   John V. Sichi
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Jun-2007 : Initial revision (GB);
- * 05-Jul-2007 : Added support for generics (JVS);
- *
- */
 package org.jgrapht.alg;
 
-import org.jgrapht.Graph;
-
+import org.jgrapht.*;
 
 /**
  * Helper class for {@link KShortestPaths}.
  *
  * @author Guillaume Boulmier
  * @since July 5, 2007
+ * @deprecated Use {@link org.jgrapht.alg.shortestpath.RankingPathElement} instead.
  */
+@Deprecated
 final class RankingPathElement<V, E>
     extends AbstractPathElement<V, E>
 {
-    
-
     /**
      * Weight of the path.
      */
     private double weight;
-
-    
 
     /**
      * Creates a path element by concatenation of an edge to a path element.
@@ -66,10 +43,7 @@ final class RankingPathElement<V, E>
      * @param weight total cost of the created path element.
      */
     RankingPathElement(
-        Graph<V, E> graph,
-        RankingPathElement<V, E> pathElement,
-        E edge,
-        double weight)
+        Graph<V, E> graph, RankingPathElement<V, E> pathElement, E edge, double weight)
     {
         super(graph, pathElement, edge);
         this.weight = weight;
@@ -86,8 +60,6 @@ final class RankingPathElement<V, E>
         this.weight = 0;
     }
 
-    
-
     /**
      * Returns the weight of the path.
      *
@@ -103,7 +75,8 @@ final class RankingPathElement<V, E>
      *
      * @return <code>null</code> is the path is empty.
      */
-    @Override public RankingPathElement<V, E> getPrevPathElement()
+    @Override
+    public RankingPathElement<V, E> getPrevPathElement()
     {
         return (RankingPathElement<V, E>) super.getPrevPathElement();
     }

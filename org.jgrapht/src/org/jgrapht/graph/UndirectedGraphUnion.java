@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2009-2017, by Ilya Razenshteyn and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2009, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,56 +15,38 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * UndirectedGraphUnion.java
- * -------------------------
- * (C) Copyright 2009-2009, by Ilya Razenshteyn
- *
- * Original Author:  Ilya Razenshteyn and Contributors.
- *
- * $Id$
- *
- * Changes
- * -------
- * 02-Feb-2009 : Initial revision (IR);
- *
- */
 package org.jgrapht.graph;
 
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.UndirectedGraph;
-import org.jgrapht.util.WeightCombiner;
+import org.jgrapht.*;
+import org.jgrapht.util.*;
 
-
+/**
+ * An undirected version of the read-only union of two graphs.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ */
 public class UndirectedGraphUnion<V, E>
     extends GraphUnion<V, E, UndirectedGraph<V, E>>
     implements UndirectedGraph<V, E>
 {
-    
-
     private static final long serialVersionUID = -740199233080172450L;
 
-    
-
     UndirectedGraphUnion(
-        UndirectedGraph<V, E> g1,
-        UndirectedGraphUnion<V, E> g2,
-        WeightCombiner operator)
+        UndirectedGraph<V, E> g1, UndirectedGraph<V, E> g2, WeightCombiner operator)
     {
         super(g1, g2, operator);
     }
 
-    UndirectedGraphUnion(
-        UndirectedGraph<V, E> g1,
-        UndirectedGraphUnion<V, E> g2)
+    UndirectedGraphUnion(UndirectedGraph<V, E> g1, UndirectedGraph<V, E> g2)
     {
         super(g1, g2);
     }
 
-    
-
-    @Override public int degreeOf(V vertex)
+    @Override
+    public int degreeOf(V vertex)
     {
         Set<E> res = edgesOf(vertex);
         return res.size();

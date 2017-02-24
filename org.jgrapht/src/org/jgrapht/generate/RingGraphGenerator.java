@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2003-2017, by John V Sichi and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,35 +15,19 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------
- * RingGraphGenerator.java
- * -------------------
- * (C) Copyright 2003-2008, by John V. Sichi and Contributors.
- *
- * Original Author:  John V. Sichi
- * Contributor(s):   -
- *
- * $Id$
- *
- * Changes
- * -------
- * 16-Sep-2003 : Initial revision (JVS);
- *
- */
 package org.jgrapht.generate;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.VertexFactory;
-
+import org.jgrapht.*;
 
 /**
- * Generates a ring graph of any size. A ring graph is a graph that contains a
- * single cycle that passes through all its vertices exactly once. For a
- * directed graph, the generated edges are oriented consistently around the
- * ring.
+ * Generates a ring graph of any size. A ring graph is a graph that contains a single cycle that
+ * passes through all its vertices exactly once. For a directed graph, the generated edges are
+ * oriented consistently around the ring.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author John V. Sichi
  * @since Sep 16, 2003
@@ -55,11 +35,7 @@ import org.jgrapht.VertexFactory;
 public class RingGraphGenerator<V, E>
     implements GraphGenerator<V, E, V>
 {
-    
-
     private int size;
-
-    
 
     /**
      * Construct a new RingGraphGenerator.
@@ -77,23 +53,19 @@ public class RingGraphGenerator<V, E>
         this.size = size;
     }
 
-    
-
     /**
      * {@inheritDoc}
      */
-    @Override public void generateGraph(
-        Graph<V, E> target,
-        VertexFactory<V> vertexFactory,
-        Map<String, V> resultMap)
+    @Override
+    public void generateGraph(
+        Graph<V, E> target, VertexFactory<V> vertexFactory, Map<String, V> resultMap)
     {
         if (size < 1) {
             return;
         }
 
-        LinearGraphGenerator<V, E> linearGenerator =
-            new LinearGraphGenerator<V, E>(size);
-        Map<String, V> privateMap = new HashMap<String, V>();
+        LinearGraphGenerator<V, E> linearGenerator = new LinearGraphGenerator<>(size);
+        Map<String, V> privateMap = new HashMap<>();
         linearGenerator.generateGraph(target, vertexFactory, privateMap);
 
         V startVertex = privateMap.get(LinearGraphGenerator.START_VERTEX);

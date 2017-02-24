@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2013-2017, by Alexey Kudinkin and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://org.org.jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2013, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,35 +15,29 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * MinimumSpanningTree.java
- * -------------------------
- *
- * Original Author:  Alexey Kudinkin
- * Contributor(s):
- *
- */
 package org.jgrapht.alg.interfaces;
 
 /**
- * Allows to derive weighted matching from <i>general</i> graph
+ * Compute a weighted matching of a graph.
  *
- * @param <V>
- * @param <E>
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @see MatchingAlgorithm
+ * @deprecated Use {@link MatchingAlgorithm} directly
  */
+@Deprecated
 public interface WeightedMatchingAlgorithm<V, E>
     extends MatchingAlgorithm<V, E>
 {
-    
-
     /**
      * Returns weight of a matching found
      *
      * @return weight of a matching found
+     * @deprecated Use {@link #computeMatching()} instead.
      */
-    public double getMatchingWeight();
+    @Deprecated
+    double getMatchingWeight();
 }
 
 // End WeightedMatchingAlgorithm.java

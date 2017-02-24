@@ -1,4 +1,9 @@
-/* This program and the accompanying materials are dual-licensed under
+/*
+ * (C) Copyright 2016-2017, by micha and Contributors.
+ *
+ * JGraphT : a free Java graph-theory library
+ *
+ * This program and the accompanying materials are dual-licensed under
  * either
  *
  * (a) the terms of the GNU Lesser General Public License version 2.1
@@ -10,42 +15,37 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/**
- *
- */
 package org.jgrapht.experimental.alg;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.Graphs;
-
+import org.jgrapht.*;
 
 /**
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ * 
  * @author micha
+ * 
  */
 public abstract class IntArrayGraphAlgorithm<V, E>
 {
-    
-
     protected final List<V> _vertices;
-    protected final int [][] _neighbors;
+    protected final int[][] _neighbors;
     protected final Map<V, Integer> _vertexToPos;
 
-    
-
     /**
-     * @param g
+     * Create a new instance.
+     * 
+     * @param g the input graph
      */
     public IntArrayGraphAlgorithm(final Graph<V, E> g)
     {
         final int numVertices = g.vertexSet().size();
-        _vertices = new ArrayList<V>(numVertices);
+        _vertices = new ArrayList<>(numVertices);
         _neighbors = new int[numVertices][];
-        _vertexToPos = new HashMap<V, Integer>(numVertices);
+        _vertexToPos = new HashMap<>(numVertices);
         for (V vertex : g.vertexSet()) {
             _neighbors[_vertices.size()] = new int[g.edgesOf(vertex).size()];
             _vertexToPos.put(vertex, _vertices.size());
@@ -55,8 +55,7 @@ public abstract class IntArrayGraphAlgorithm<V, E>
             int nbIndex = 0;
             final V vertex = _vertices.get(i);
             for (E e : g.edgesOf(vertex)) {
-                _neighbors[i][nbIndex++] =
-                    _vertexToPos.get(Graphs.getOppositeVertex(g, e, vertex));
+                _neighbors[i][nbIndex++] = _vertexToPos.get(Graphs.getOppositeVertex(g, e, vertex));
             }
         }
     }

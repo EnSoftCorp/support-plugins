@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2006-2017, by France Telecom and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,51 +15,29 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * AbstractPathElement.java
- * -------------------------
- * (C) Copyright 2006-2008, by France Telecom
- *
- * Original Author:  Guillaume Boulmier and Contributors.
- * Contributor(s):   John V. Sichi
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Jan-2006 : Initial revision (GB);
- * 14-Jan-2006 : Added support for generics (JVS);
- *
- */
 package org.jgrapht.alg;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.GraphPath;
-import org.jgrapht.Graphs;
-
+import org.jgrapht.*;
 
 /**
- * A new path is created from a path concatenated to an edge. It's like a linked
- * list.<br>
+ * A new path is created from a path concatenated to an edge. It's like a linked list.<br>
  * The empty path is composed only of one vertex.<br>
  * In this case the path has no previous path element.<br>
  * .
  *
- * <p>NOTE jvs 1-Jan-2008: This is an internal data structure for use in
- * algorithms. For returning paths to callers, use the public {@link GraphPath}
- * interface instead.
+ * <p>
+ * NOTE jvs 1-Jan-2008: This is an internal data structure for use in algorithms. For returning
+ * paths to callers, use the public {@link GraphPath} interface instead.
  *
  * @author Guillaume Boulmier
  * @since July 5, 2007
+ * @deprecated moved in shortest path package
  */
+@Deprecated
 abstract class AbstractPathElement<V, E>
 {
-    
-
     /**
      * Number of hops of the path.
      */
@@ -84,24 +58,15 @@ abstract class AbstractPathElement<V, E>
      */
     private V vertex;
 
-    
-
     /**
      * Creates a path element by concatenation of an edge to a path element.
      *
      * @param pathElement
      * @param edge edge reaching the end vertex of the path element created.
      */
-    protected AbstractPathElement(
-        Graph<V, E> graph,
-        AbstractPathElement<V, E> pathElement,
-        E edge)
+    protected AbstractPathElement(Graph<V, E> graph, AbstractPathElement<V, E> pathElement, E edge)
     {
-        this.vertex =
-            Graphs.getOppositeVertex(
-                graph,
-                edge,
-                pathElement.getVertex());
+        this.vertex = Graphs.getOppositeVertex(graph, edge, pathElement.getVertex());
         this.prevEdge = edge;
         this.prevPathElement = pathElement;
 
@@ -135,8 +100,6 @@ abstract class AbstractPathElement<V, E>
         this.nHops = 0;
     }
 
-    
-
     /**
      * Returns the path as a list of edges.
      *
@@ -144,7 +107,7 @@ abstract class AbstractPathElement<V, E>
      */
     public List<E> createEdgeListPath()
     {
-        List<E> path = new ArrayList<E>();
+        List<E> path = new ArrayList<>();
         AbstractPathElement<V, E> pathElement = this;
 
         // while start vertex is not reached.

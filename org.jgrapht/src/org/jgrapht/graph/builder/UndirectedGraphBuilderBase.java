@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2015-2017, by Andrew Chen and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,41 +15,26 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------------
- * UndirectedGraphBuilderBase.java
- * -------------------------------
- * (C) Copyright 2015, by Andrew Chen and Contributors.
- *
- * Original Author:  Andrew Chen <llkiwi2006@gmail.com>
- * Contributor(s):   -
- *
- * $Id$
- *
- * Changes
- * -------
- * 12-Jan-2015 : Initial revision (AC);
- *
- */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.UndirectedGraph;
-import org.jgrapht.graph.UnmodifiableUndirectedGraph;
-
+import org.jgrapht.*;
+import org.jgrapht.graph.*;
 
 /**
  * Base class for {@link UndirectedGraphBuilder} for extending.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ * @param <G> type of the resulting graph
+ * @param <B> type of this builder
+ * 
  */
-public abstract class UndirectedGraphBuilderBase<V,
-    E,
-    G extends UndirectedGraph<V, E>,
+public abstract class UndirectedGraphBuilderBase<V, E, G extends UndirectedGraph<V, E>,
     B extends UndirectedGraphBuilderBase<V, E, G, B>>
     extends AbstractGraphBuilder<V, E, G, B>
 {
-    
-
     /**
-     * Creates a builder based on {@code baseGraph}. {@code baseGraph} must be
-     * mutable.
+     * Creates a builder based on {@code baseGraph}. {@code baseGraph} must be mutable.
      *
      * @param baseGraph the graph object to base building on
      */
@@ -62,11 +43,10 @@ public abstract class UndirectedGraphBuilderBase<V,
         super(baseGraph);
     }
 
-    
-
-    @Override public UnmodifiableUndirectedGraph<V, E> buildUnmodifiable()
+    @Override
+    public UnmodifiableUndirectedGraph<V, E> buildUnmodifiable()
     {
-        return new UnmodifiableUndirectedGraph<V, E>(this.graph);
+        return new UnmodifiableUndirectedGraph<>(this.graph);
     }
 }
 

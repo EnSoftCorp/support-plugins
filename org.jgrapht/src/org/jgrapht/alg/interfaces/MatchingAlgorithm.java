@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2013-2017, by Alexey Kudinkin and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://org.org.jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2013, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,35 +15,124 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * MatchingAlgorithm.java
- * -------------------------
- *
- * Original Author:  Alexey Kudinkin
- * Contributor(s):
- *
- */
 package org.jgrapht.alg.interfaces;
 
-import java.util.Set;
-
+import java.io.*;
+import java.util.*;
 
 /**
- * Allows to derive <a
- * href="http://en.wikipedia.org/wiki/Matching_(graph_theory)">matching</a> from
- * given graph
+ * Allows to derive a <a href="http://en.wikipedia.org/wiki/Matching_(graph_theory)">matching</a> of
+ * a given graph.
  *
- * @param <V> vertex concept type
- * @param <E> edge concept type
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  */
-public abstract interface MatchingAlgorithm<V, E>
+public interface MatchingAlgorithm<V, E>
 {
-    
+    /**
+     * Default tolerance used by algorithms comparing floating point values.
+     */
+    double DEFAULT_EPSILON = 1e-9;
+
+    /*
+     * TODO after next release: Rename computeMatching() to getMatching() and deprecate
+     * computeMatching().
+     */
 
     /**
      * Returns set of edges making up the matching
+     * 
+     * @return a matching
+     * @deprecated Use {@link #computeMatching()} instead.
      */
-    public Set<E> getMatching();
+    @Deprecated
+    default Set<E> getMatching()
+    {
+        return computeMatching().getEdges();
+    }
+
+    /**
+     * Compute a matching for a given graph.
+     * 
+     * @return a matching
+     */
+    Matching<E> computeMatching();
+
+    /**
+     * A graph matching.
+     *
+     * @param <E> the graph edge type
+     */
+    interface Matching<E>
+    {
+        /**
+         * Returns the weight of the matching.
+         *
+         * @return the weight of the matching
+         */
+        double getWeight();
+
+        /**
+         * Get the edges of the matching.
+         *
+         * @return the edges of the matching
+         */
+        Set<E> getEdges();
+    }
+
+    /**
+     * A default implementation of the matching interface.
+     *
+     * @param <E> the graph edge type
+     */
+    class MatchingImpl<E>
+        implements Matching<E>, Serializable
+    {
+        private static final long serialVersionUID = 4767675421846527768L;
+
+        private Set<E> edges;
+        private double weight;
+
+        /**
+         * Construct a new instance
+         *
+         * @param edges the edges of the matching
+         * @param weight the weight of the matching
+         */
+        public MatchingImpl(Set<E> edges, double weight)
+        {
+            this.edges = edges;
+            this.weight = weight;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public double getWeight()
+        {
+            return weight;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public Set<E> getEdges()
+        {
+            return edges;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public String toString()
+        {
+            return "Matching [edges=" + edges + ", weight=" + weight + "]";
+        }
+    }
+
 }
 
 // End MatchingAlgorithm.java

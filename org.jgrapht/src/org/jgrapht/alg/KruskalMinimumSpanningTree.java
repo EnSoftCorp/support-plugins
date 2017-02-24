@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2010-2017, by Tom Conerly and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2010, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,76 +15,51 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * KruskalMinimumSpanningTree.java
- * -------------------------
- * (C) Copyright 2010-2010, by Tom Conerly and Contributors.
- *
- * Original Author:  Tom Conerly
- * Contributor(s):
- *
- * Changes
- * -------
- * 02-Feb-2010 : Initial revision (TC);
- *
- */
 package org.jgrapht.alg;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.Graph;
-import org.jgrapht.alg.interfaces.MinimumSpanningTree;
-import org.jgrapht.alg.util.UnionFind;
-
+import org.jgrapht.*;
+import org.jgrapht.alg.interfaces.*;
+import org.jgrapht.alg.util.*;
 
 /**
- * An implementation of <a
- * href="http://en.wikipedia.org/wiki/Kruskal's_algorithm">Kruskal's minimum
- * spanning tree algorithm</a>. If the given graph is connected it computes the
- * minimum spanning tree, otherwise it computes the minimum spanning forest. The
- * algorithm runs in time O(E log E). This implementation uses the hashCode and
- * equals method of the vertices.
+ * An implementation of <a href="http://en.wikipedia.org/wiki/Kruskal's_algorithm">Kruskal's minimum
+ * spanning tree algorithm</a>. If the given graph is connected it computes the minimum spanning
+ * tree, otherwise it computes the minimum spanning forest. The algorithm runs in time O(E log E).
+ * This implementation uses the hashCode and equals method of the vertices.
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author Tom Conerly
  * @since Feb 10, 2010
+ * @deprecated Use {@link org.jgrapht.alg.spanning.KruskalMinimumSpanningTree} instead.
  */
+@Deprecated
 public class KruskalMinimumSpanningTree<V, E>
     implements MinimumSpanningTree<V, E>
 {
-    
-
     private double spanningTreeCost;
     private Set<E> edgeList;
 
-    
-
     /**
-     * Creates and executes a new KruskalMinimumSpanningTree algorithm instance.
-     * An instance is only good for a single spanning tree; after construction,
-     * it can be accessed to retrieve information about the spanning tree found.
+     * Creates and executes a new KruskalMinimumSpanningTree algorithm instance. An instance is only
+     * good for a single spanning tree; after construction, it can be accessed to retrieve
+     * information about the spanning tree found.
      *
      * @param graph the graph to be searched
      */
     public KruskalMinimumSpanningTree(final Graph<V, E> graph)
     {
-        UnionFind<V> forest = new UnionFind<V>(graph.vertexSet());
-        ArrayList<E> allEdges = new ArrayList<E>(graph.edgeSet());
+        UnionFind<V> forest = new UnionFind<>(graph.vertexSet());
+        ArrayList<E> allEdges = new ArrayList<>(graph.edgeSet());
         Collections.sort(
-            allEdges,
-            new Comparator<E>() {
-                @Override public int compare(E edge1, E edge2)
-                {
-                    return Double.valueOf(graph.getEdgeWeight(edge1)).compareTo(
-                        graph.getEdgeWeight(edge2));
-                }
-            });
+            allEdges, (edge1, edge2) -> Double
+                .valueOf(graph.getEdgeWeight(edge1)).compareTo(graph.getEdgeWeight(edge2)));
 
         spanningTreeCost = 0;
-        edgeList = new HashSet<E>();
+        edgeList = new HashSet<>();
 
         for (E edge : allEdges) {
             V source = graph.getEdgeSource(edge);
@@ -103,37 +74,18 @@ public class KruskalMinimumSpanningTree<V, E>
         }
     }
 
-    
-
-    @Override public Set<E> getMinimumSpanningTreeEdgeSet()
+    @Override
+    public Set<E> getMinimumSpanningTreeEdgeSet()
     {
         return edgeList;
     }
 
-    @Override public double getMinimumSpanningTreeTotalWeight()
+    @Override
+    public double getMinimumSpanningTreeTotalWeight()
     {
         return spanningTreeCost;
     }
 
-    /**
-     * Returns edges set constituting the minimum spanning tree/forest
-     *
-     * @return minimum spanning-tree edges set
-     */
-    @Deprecated public Set<E> getEdgeSet()
-    {
-        return getMinimumSpanningTreeEdgeSet();
-    }
-
-    /**
-     * Returns total weight of the minimum spanning tree/forest.
-     *
-     * @return minimum spanning-tree total weight
-     */
-    @Deprecated public double getSpanningTreeCost()
-    {
-        return getMinimumSpanningTreeTotalWeight();
-    }
 }
 
 // End KruskalMinimumSpanningTree.java

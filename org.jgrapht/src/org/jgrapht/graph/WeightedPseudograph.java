@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2003-2017, by Barak Naveh and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,47 +15,27 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* ------------------------
- * WeightedPseudograph.java
- * ------------------------
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
- *
- * Original Author:  Barak Naveh
- * Contributor(s):   Christian Hammer
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Aug-2003 : Initial revision (BN);
- * 06-Aug-2005 : Made generic (CH);
- * 28-May-2006 : Moved connectivity info from edge to graph (JVS);
- *
- */
 package org.jgrapht.graph;
 
-import org.jgrapht.EdgeFactory;
-import org.jgrapht.WeightedGraph;
-import org.jgrapht.graph.builder.UndirectedWeightedGraphBuilder;
-import org.jgrapht.graph.builder.UndirectedWeightedGraphBuilderBase;
-
+import org.jgrapht.*;
+import org.jgrapht.graph.builder.*;
 
 /**
- * A weighted pseudograph. A weighted pseudograph is a non-simple undirected
- * graph in which both graph loops and multiple edges are permitted. The edges
- * of a weighted pseudograph have weights. If you're unsure about pseudographs,
- * see: <a href="http://mathworld.wolfram.com/Pseudograph.html">
+ * A weighted pseudograph. A weighted pseudograph is a non-simple undirected graph in which both
+ * graph loops and multiple edges are permitted. The edges of a weighted pseudograph have weights.
+ * If you're unsure about pseudographs, see:
+ * <a href="http://mathworld.wolfram.com/Pseudograph.html">
  * http://mathworld.wolfram.com/Pseudograph.html</a>.
+ * 
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
+ * 
  */
 public class WeightedPseudograph<V, E>
     extends Pseudograph<V, E>
     implements WeightedGraph<V, E>
 {
-    
-
     private static final long serialVersionUID = 3257290244524356152L;
-
-    
 
     /**
      * Creates a new weighted pseudograph with the specified edge factory.
@@ -78,26 +54,37 @@ public class WeightedPseudograph<V, E>
      */
     public WeightedPseudograph(Class<? extends E> edgeClass)
     {
-        this(new ClassBasedEdgeFactory<V, E>(edgeClass));
+        this(new ClassBasedEdgeFactory<>(edgeClass));
     }
 
-    
-
-    public static <V, E> UndirectedWeightedGraphBuilderBase<V,
-        E, ? extends WeightedPseudograph<V, E>, ?> builder(
-        Class<? extends E> edgeClass)
+    /**
+     * Create a builder for this kind of graph.
+     * 
+     * @param edgeClass class on which to base factory for edges
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
+     * @return a builder for this kind of graph
+     */
+    public static <V,
+        E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(
+            Class<? extends E> edgeClass)
     {
-        return new UndirectedWeightedGraphBuilder<V,
-            E, WeightedPseudograph<V, E>>(
-                new WeightedPseudograph<V, E>(edgeClass));
+        return new UndirectedWeightedGraphBuilder<>(new WeightedPseudograph<>(edgeClass));
     }
 
-    public static <V, E> UndirectedWeightedGraphBuilderBase<V,
-        E, ? extends WeightedPseudograph<V, E>, ?> builder(EdgeFactory<V, E> ef)
+    /**
+     * Create a builder for this kind of graph.
+     * 
+     * @param ef the edge factory of the new graph
+     * @param <V> the graph vertex type
+     * @param <E> the graph edge type
+     * @return a builder for this kind of graph
+     */
+    public static <V,
+        E> UndirectedWeightedGraphBuilderBase<V, E, ? extends WeightedPseudograph<V, E>, ?> builder(
+            EdgeFactory<V, E> ef)
     {
-        return new UndirectedWeightedGraphBuilder<V,
-            E, WeightedPseudograph<V, E>>(
-                new WeightedPseudograph<V, E>(ef));
+        return new UndirectedWeightedGraphBuilder<>(new WeightedPseudograph<>(ef));
     }
 }
 

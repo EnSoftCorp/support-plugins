@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2007-2017, by France Telecom and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,70 +15,46 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * BiconnectivityInspector.java
- * -------------------------
- * (C) Copyright 2007-2008, by France Telecom
- *
- * Original Author:  Guillaume Boulmier and Contributors.
- * Contributor(s):   John V. Sichi
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Jun-2007 : Initial revision (GB);
- * 05-Jul-2007 : Added support for generics (JVS);
- *
- */
 package org.jgrapht.alg;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.*;
 
-import org.jgrapht.UndirectedGraph;
-
+import org.jgrapht.*;
 
 /**
- * Inspects a graph for the biconnectivity property. See {@link
- * BlockCutpointGraph} for more information. A biconnected graph has only one
- * block (i.e. no cutpoints).
+ * Inspects a graph for the biconnectivity property. See {@link BlockCutpointGraph} for more
+ * information. A biconnected graph has only one block (i.e. no cutpoints).
+ *
+ * @param <V> the graph vertex type
+ * @param <E> the graph edge type
  *
  * @author Guillaume Boulmier
  * @since July 5, 2007
  */
 public class BiconnectivityInspector<V, E>
 {
-    
-
     private BlockCutpointGraph<V, E> blockCutpointGraph;
-
-    
 
     /**
      * Running time = O(m) where m is the number of edges.
+     * 
+     * @param graph the input graph
      */
     public BiconnectivityInspector(UndirectedGraph<V, E> graph)
     {
         super();
-        this.blockCutpointGraph = new BlockCutpointGraph<V, E>(graph);
+        this.blockCutpointGraph = new BlockCutpointGraph<>(graph);
     }
-
-    
 
     /**
      * Returns the biconnected vertex-components of the graph.
+     * 
+     * @return the biconnected vertec-components of the graph
      */
     public Set<Set<V>> getBiconnectedVertexComponents()
     {
-        Set<Set<V>> biconnectedVertexComponents = new HashSet<Set<V>>();
-        for (
-            Iterator<UndirectedGraph<V, E>> iter =
-                this.blockCutpointGraph.vertexSet().iterator();
-            iter.hasNext();)
-        {
-            UndirectedGraph<V, E> subgraph = iter.next();
+        Set<Set<V>> biconnectedVertexComponents = new HashSet<>();
+        for (UndirectedGraph<V, E> subgraph : this.blockCutpointGraph.vertexSet()) {
             if (!subgraph.edgeSet().isEmpty()) {
                 biconnectedVertexComponents.add(subgraph.vertexSet());
             }
@@ -92,23 +64,17 @@ public class BiconnectivityInspector<V, E>
     }
 
     /**
-     * Returns the biconnected vertex-components containing the vertex. A
-     * biconnected vertex-component contains all the vertices in the component.
-     * A vertex which is not a cutpoint is contained in exactly one component. A
-     * cutpoint is contained is at least 2 components.
+     * Returns the biconnected vertex-components containing the vertex. A biconnected
+     * vertex-component contains all the vertices in the component. A vertex which is not a cutpoint
+     * is contained in exactly one component. A cutpoint is contained is at least 2 components.
      *
-     * @param vertex
-     *
+     * @param vertex the input vertex
      * @return set of all biconnected vertex-components containing the vertex.
      */
     public Set<Set<V>> getBiconnectedVertexComponents(V vertex)
     {
-        Set<Set<V>> vertexComponents = new HashSet<Set<V>>();
-        for (
-            Iterator<Set<V>> iter = getBiconnectedVertexComponents().iterator();
-            iter.hasNext();)
-        {
-            Set<V> vertexComponent = iter.next();
+        Set<Set<V>> vertexComponents = new HashSet<>();
+        for (Set<V> vertexComponent : getBiconnectedVertexComponents()) {
             if (vertexComponent.contains(vertex)) {
                 vertexComponents.add(vertexComponent);
             }
@@ -118,6 +84,8 @@ public class BiconnectivityInspector<V, E>
 
     /**
      * Returns the cutpoints of the graph.
+     * 
+     * @return the cutpoints
      */
     public Set<V> getCutpoints()
     {
@@ -125,8 +93,10 @@ public class BiconnectivityInspector<V, E>
     }
 
     /**
-     * Returns <code>true</code> if the graph is biconnected (no cutpoint),
-     * <code>false</code> otherwise.
+     * Returns <code>true</code> if the graph is biconnected (no cutpoint), <code>false</code>
+     * otherwise.
+     * 
+     * @return true if the graph is biconnected, false otherwise
      */
     public boolean isBiconnected()
     {

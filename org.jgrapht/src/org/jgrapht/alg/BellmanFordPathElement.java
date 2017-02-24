@@ -1,11 +1,7 @@
-/* ==========================================
+/*
+ * (C) Copyright 2006-2017, by France Telecom and Contributors.
+ *
  * JGraphT : a free Java graph-theory library
- * ==========================================
- *
- * Project Info:  http://jgrapht.sourceforge.net/
- * Project Creator:  Barak Naveh (http://sourceforge.net/users/barak_naveh)
- *
- * (C) Copyright 2003-2008, by Barak Naveh and Contributors.
  *
  * This program and the accompanying materials are dual-licensed under
  * either
@@ -19,40 +15,21 @@
  * (b) the terms of the Eclipse Public License v1.0 as published by
  * the Eclipse Foundation.
  */
-/* -------------------------
- * BellmanFordPathElement.java
- * -------------------------
- * (C) Copyright 2006-2008, by France Telecom and Contributors.
- *
- * Original Author:  Guillaume Boulmier and Contributors.
- * Contributor(s):   John V. Sichi
- *
- * $Id$
- *
- * Changes
- * -------
- * 05-Jan-2006 : Initial revision (GB);
- * 14-Jan-2006 : Added support for generics (JVS);
- *
- */
 package org.jgrapht.alg;
 
-import org.jgrapht.Graph;
-
+import org.jgrapht.*;
 
 /**
- * Helper class for {@link BellmanFordShortestPath}; not intended for general
- * use.
+ * Helper class for {@link BellmanFordShortestPath}; not intended for general use.
+ * 
+ * @deprecated moved into shortest path package
  */
+@Deprecated
 final class BellmanFordPathElement<V, E>
     extends AbstractPathElement<V, E>
 {
-    
-
     private double cost = 0;
     private double epsilon;
-
-    
 
     /**
      * Creates a path element by concatenation of an edge to a path element.
@@ -63,10 +40,7 @@ final class BellmanFordPathElement<V, E>
      * @param epsilon tolerance factor.
      */
     protected BellmanFordPathElement(
-        Graph<V, E> graph,
-        BellmanFordPathElement<V, E> pathElement,
-        E edge,
-        double cost,
+        Graph<V, E> graph, BellmanFordPathElement<V, E> pathElement, E edge, double cost,
         double epsilon)
     {
         super(graph, pathElement, edge);
@@ -101,8 +75,6 @@ final class BellmanFordPathElement<V, E>
         this.epsilon = epsilon;
     }
 
-    
-
     /**
      * Returns the total cost of the path element.
      *
@@ -115,9 +87,9 @@ final class BellmanFordPathElement<V, E>
 
     /**
      * Returns <code>true</code> if the path has been improved, <code>
-     * false</code> otherwise. We use an "epsilon" precision to check whether
-     * the cost has been improved (because of many roundings, a formula equal to
-     * 0 could unfortunately be evaluated to 10^-14).
+     * false</code> otherwise. We use an "epsilon" precision to check whether the cost has been
+     * improved (because of many roundings, a formula equal to 0 could unfortunately be evaluated to
+     * 10^-14).
      *
      * @param candidatePrevPathElement
      * @param candidateEdge
@@ -126,8 +98,7 @@ final class BellmanFordPathElement<V, E>
      * @return .
      */
     protected boolean improve(
-        BellmanFordPathElement<V, E> candidatePrevPathElement,
-        E candidateEdge,
+        BellmanFordPathElement<V, E> candidatePrevPathElement, E candidateEdge,
         double candidateCost)
     {
         // to avoid improvement only due to rounding errors.
