@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.jgrapht.feature_1.0.1.201702241556.jar" id="org.jgrapht.feature" version="1.0.1.201702241556">
+      <category name="com.ensoftcorp.open.support.category"/>
+   </feature>
+   <category-def name="com.ensoftcorp.open.support.category" label="Third Party Support Plugins">
+      <description>
+         A collection of third party support plugins.
+      </description>
+   </category-def>
+</site>
