@@ -279,7 +279,8 @@ public abstract class MaximumFlowAlgorithmBase<V, E>
                          // the flow already in this direction).
         double flow; // Flow in the direction denoted by this edge
 
-        public <VE extends VertexExtensionBase> VE getSource()
+        @SuppressWarnings("unchecked")
+		public <VE extends VertexExtensionBase> VE getSource()
         {
             return (VE) source;
         }
@@ -289,7 +290,8 @@ public abstract class MaximumFlowAlgorithmBase<V, E>
             this.source = source;
         }
 
-        public <VE extends VertexExtensionBase> VE getTarget()
+        @SuppressWarnings("unchecked")
+		public <VE extends VertexExtensionBase> VE getTarget()
         {
             return (VE) target;
         }

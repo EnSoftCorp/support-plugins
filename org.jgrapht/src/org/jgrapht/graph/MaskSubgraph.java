@@ -57,7 +57,8 @@ public class MaskSubgraph<V, E>
      *        as if it is not in the subgraph.
      * @deprecated in favor of using the constructor with lambdas
      */
-    @Deprecated
+    @SuppressWarnings("deprecation")
+	@Deprecated
     public MaskSubgraph(Graph<V, E> base, MaskFunctor<V, E> mask)
     {
         this(base, v -> mask.isVertexMasked(v), e -> mask.isEdgeMasked(e));

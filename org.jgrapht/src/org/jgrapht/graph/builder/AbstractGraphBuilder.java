@@ -75,7 +75,8 @@ public abstract class AbstractGraphBuilder<V, E, G extends Graph<V, E>,
      *
      * @see #addVertex(Object)
      */
-    public B addVertices(V... vertices)
+    @SuppressWarnings("unchecked")
+	public B addVertices(V... vertices)
     {
         for (V vertex : vertices) {
             this.addVertex(vertex);
@@ -130,7 +131,8 @@ public abstract class AbstractGraphBuilder<V, E, G extends Graph<V, E>,
      *
      * @see #addEdge(Object, Object)
      */
-    public B addEdgeChain(V first, V second, V... rest)
+    @SuppressWarnings("unchecked")
+	public B addEdgeChain(V first, V second, V... rest)
     {
         this.addEdge(first, second);
         V last = second;
@@ -180,7 +182,8 @@ public abstract class AbstractGraphBuilder<V, E, G extends Graph<V, E>,
      *
      * @see #removeVertex(Object)
      */
-    public B removeVertices(V... vertices)
+    @SuppressWarnings("unchecked")
+	public B removeVertices(V... vertices)
     {
         for (V vertex : vertices) {
             this.removeVertex(vertex);

@@ -266,7 +266,8 @@ public final class EdmondsKarpMFImpl<V, E>
         return false;
     }
 
-    private VertexExtension getVertexExtension(V v)
+    @SuppressWarnings("unchecked")
+	private VertexExtension getVertexExtension(V v)
     {
         return (VertexExtension) vertexExtensionManager.getExtension(v);
     }

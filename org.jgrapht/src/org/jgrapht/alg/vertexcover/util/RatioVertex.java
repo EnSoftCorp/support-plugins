@@ -17,7 +17,8 @@
  */
 package org.jgrapht.alg.vertexcover.util;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Helper class for vertex covers. Guarantees that vertices can be sorted, thereby obtaining a
@@ -125,7 +126,8 @@ public class RatioVertex<V>
         return ID;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public boolean equals(Object o)
     {
         if (this == o)

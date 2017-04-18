@@ -48,7 +48,8 @@ public class ListenableUndirectedWeightedGraph<V, E>
      *
      * @param base the backing graph.
      */
-    public ListenableUndirectedWeightedGraph(WeightedGraph<V, E> base)
+    @SuppressWarnings("unchecked")
+	public ListenableUndirectedWeightedGraph(WeightedGraph<V, E> base)
     {
         super((UndirectedGraph<V, E>) base);
     }

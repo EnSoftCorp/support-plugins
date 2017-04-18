@@ -333,7 +333,8 @@ public class PushRelabelMFImpl<V, E>
             .<VertexExtension> getSource().label == (e.<VertexExtension> getTarget().label + 1));
     }
 
-    private VertexExtension getVertexExtension(V v)
+    @SuppressWarnings("unchecked")
+	private VertexExtension getVertexExtension(V v)
     {
         return (VertexExtension) vertexExtensionManager.getExtension(v);
     }
