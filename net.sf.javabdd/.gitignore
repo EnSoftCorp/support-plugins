@@ -1,5 +1,4 @@
 # Stuff not to ignore
-!*.class
 !*.dll
 !*.so
 !*.dylib

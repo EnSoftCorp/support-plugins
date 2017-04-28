@@ -1,3 +1,2 @@
 # Stuff not to ignore
-!*.class
-!bin/
+*.class
