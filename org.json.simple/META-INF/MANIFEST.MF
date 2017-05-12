@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JSON Simple
+Bundle-SymbolicName: org.json.simple;singleton:=true
+Bundle-Version: 1.1.0.qualifier
+Bundle-Vendor: fangyidong
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.json.simple,
+ org.json.simple.parser
+Bundle-ActivationPolicy: lazy

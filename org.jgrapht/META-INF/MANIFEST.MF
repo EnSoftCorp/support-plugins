@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: JGraphT
-Bundle-SymbolicName: org.jgrapht
+Bundle-SymbolicName: org.jgrapht;singleton:=true
 Bundle-Version: 1.0.1.qualifier
 Export-Package: org.jgrapht,
  org.jgrapht.alg,
@@ -30,3 +30,4 @@ Export-Package: org.jgrapht,
  org.jgrapht.util
 Require-Bundle: org.eclipse.core.runtime
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
