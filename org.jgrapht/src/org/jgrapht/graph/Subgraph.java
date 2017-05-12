@@ -17,12 +17,20 @@
  */
 package org.jgrapht.graph;
 
-import java.io.*;
-import java.util.*;
-import java.util.stream.*;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.jgrapht.*;
-import org.jgrapht.event.*;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.Graph;
+import org.jgrapht.ListenableGraph;
+import org.jgrapht.WeightedGraph;
+import org.jgrapht.event.GraphEdgeChangeEvent;
+import org.jgrapht.event.GraphListener;
+import org.jgrapht.event.GraphVertexChangeEvent;
 
 /**
  * A subgraph is a graph that has a subset of vertices and a subset of edges with respect to some

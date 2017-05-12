@@ -17,10 +17,12 @@
  */
 package org.jgrapht.experimental.alg.color;
 
-import java.util.*;
+import java.util.BitSet;
+import java.util.Map;
 
-import org.jgrapht.*;
-import org.jgrapht.experimental.alg.*;
+import org.jgrapht.Graph;
+import org.jgrapht.experimental.alg.ExactAlgorithm;
+import org.jgrapht.experimental.alg.IntArrayGraphAlgorithm;
 
 /**
  * Brown graph coloring algorithm.

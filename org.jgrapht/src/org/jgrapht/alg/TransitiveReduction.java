@@ -17,9 +17,12 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.List;
+import java.util.Set;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
 
 /**
  * An implementation of Harry Hsu's

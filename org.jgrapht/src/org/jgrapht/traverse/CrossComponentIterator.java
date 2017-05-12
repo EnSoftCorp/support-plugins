@@ -17,10 +17,16 @@
  */
 package org.jgrapht.traverse;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
-import org.jgrapht.*;
-import org.jgrapht.event.*;
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
+import org.jgrapht.event.ConnectedComponentTraversalEvent;
+import org.jgrapht.event.EdgeTraversalEvent;
+import org.jgrapht.event.VertexTraversalEvent;
 
 /**
  * Provides a cross-connected-component traversal functionality for iterator subclasses.

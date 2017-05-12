@@ -17,9 +17,11 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.VertexFactory;
+import org.jgrapht.WeightedGraph;
 
 /**
  * A simple weighted graph matrix generator.

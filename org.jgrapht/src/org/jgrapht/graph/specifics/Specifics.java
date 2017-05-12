@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph.specifics;
 
-import java.util.*;
+import java.util.Set;
 
 /**
  * An interface encapsulating the basic graph operations. Different implementations have different

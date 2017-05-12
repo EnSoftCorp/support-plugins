@@ -17,10 +17,17 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
+import org.jgrapht.Graphs;
+import org.jgrapht.WeightedGraph;
+import org.jgrapht.alg.interfaces.WeightedMatchingAlgorithm;
 
 /**
  * This class finds a maximum weight matching of a simple undirected weighted bipartite graph. The

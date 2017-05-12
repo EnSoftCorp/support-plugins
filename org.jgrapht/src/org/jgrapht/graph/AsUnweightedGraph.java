@@ -17,9 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import java.io.*;
+import java.io.Serializable;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.WeightedGraph;
 
 /**
  * An unweighted view of the backing weighted graph specified in the constructor. This graph allows

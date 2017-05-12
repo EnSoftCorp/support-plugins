@@ -17,8 +17,8 @@
  */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.graph.UnmodifiableUndirectedGraph;
 
 /**
  * Base class for {@link UndirectedGraphBuilder} for extending.

@@ -17,11 +17,13 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.cycle.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.cycle.HierholzerEulerianCycle;
+import org.jgrapht.graph.UndirectedSubgraph;
 
 /**
  * This algorithm will check whether a graph is Eulerian (hence it contains an

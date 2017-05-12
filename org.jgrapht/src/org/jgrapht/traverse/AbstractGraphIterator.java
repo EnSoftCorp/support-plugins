@@ -17,10 +17,16 @@
  */
 package org.jgrapht.traverse;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.event.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.event.ConnectedComponentTraversalEvent;
+import org.jgrapht.event.EdgeTraversalEvent;
+import org.jgrapht.event.TraversalListener;
+import org.jgrapht.event.VertexTraversalEvent;
 
 /**
  * An empty implementation of a graph iterator to minimize the effort required to implement graph

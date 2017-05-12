@@ -17,10 +17,11 @@
  */
 package org.jgrapht.graph.specifics;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Collections;
+import java.util.Set;
 
-import org.jgrapht.graph.*;
+import org.jgrapht.graph.EdgeSetFactory;
 
 /**
  * A container for vertex edges.

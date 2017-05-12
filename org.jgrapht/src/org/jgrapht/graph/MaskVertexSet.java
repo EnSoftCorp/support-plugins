@@ -17,11 +17,13 @@
  */
 package org.jgrapht.graph;
 
-import java.io.*;
-import java.util.*;
-import java.util.function.*;
+import java.io.Serializable;
+import java.util.AbstractSet;
+import java.util.Iterator;
+import java.util.Set;
+import java.util.function.Predicate;
 
-import org.jgrapht.util.*;
+import org.jgrapht.util.TypeUtil;
 
 /**
  * Helper for {@link MaskSubgraph}.

@@ -17,13 +17,22 @@
  */
 package org.jgrapht.alg.vertexcover;
 
-import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.*;
-import org.jgrapht.alg.interfaces.*;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.NeighborIndex;
+import org.jgrapht.alg.interfaces.MinimumWeightedVertexCoverAlgorithm;
 
 /**
  * Finds a minimum vertex cover in a undirected graph. The implementation relies on a recursive

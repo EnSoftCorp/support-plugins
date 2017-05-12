@@ -17,7 +17,8 @@
  */
 package org.jgrapht;
 
-import org.jgrapht.event.*;
+import org.jgrapht.event.GraphListener;
+import org.jgrapht.event.VertexSetListener;
 
 /**
  * A graph that supports listeners on structural change events.

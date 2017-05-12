@@ -17,8 +17,8 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Set;
 
 /**
  * Allows to derive a <a href="http://en.wikipedia.org/wiki/Matching_(graph_theory)">matching</a> of

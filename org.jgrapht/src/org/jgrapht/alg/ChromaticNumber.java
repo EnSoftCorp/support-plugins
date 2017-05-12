@@ -17,11 +17,18 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.util.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.util.VertexDegreeComparator;
+import org.jgrapht.graph.UndirectedSubgraph;
 
 /**
  * Allows the <a href="http://mathworld.wolfram.com/ChromaticNumber.html"> chromatic number</a> of a

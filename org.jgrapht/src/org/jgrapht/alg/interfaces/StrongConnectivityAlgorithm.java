@@ -17,10 +17,11 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.graph.DirectedSubgraph;
 
 /**
  * An interface to the StrongConnectivityInspector algorithm classes. These classes verify whether

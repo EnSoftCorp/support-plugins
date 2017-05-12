@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
 
 /**
  * A directed graph which is also {@link org.jgrapht.ListenableGraph}.

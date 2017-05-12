@@ -17,11 +17,19 @@
  */
 package org.jgrapht.alg.shortestpath;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.ConnectivityInspector;
+import org.jgrapht.graph.DirectedMaskSubgraph;
+import org.jgrapht.graph.UndirectedMaskSubgraph;
 
 /**
  * List of simple paths in increasing order of weight.

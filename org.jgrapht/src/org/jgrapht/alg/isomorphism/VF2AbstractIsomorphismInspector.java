@@ -17,10 +17,17 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.Iterator;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.GraphMapping;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.graph.DirectedMultigraph;
+import org.jgrapht.graph.DirectedPseudograph;
+import org.jgrapht.graph.Multigraph;
+import org.jgrapht.graph.Pseudograph;
 
 /**
  * Base implementation of the VF2 algorithm using its feature of detecting

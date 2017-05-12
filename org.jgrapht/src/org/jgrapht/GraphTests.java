@@ -17,11 +17,16 @@
  */
 package org.jgrapht;
 
-import java.util.*;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Objects;
+import java.util.Set;
 
-import org.jgrapht.alg.*;
-import org.jgrapht.alg.cycle.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.alg.ConnectivityInspector;
+import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
+import org.jgrapht.alg.cycle.HierholzerEulerianCycle;
+import org.jgrapht.graph.AbstractBaseGraph;
 
 /**
  * A collection of utilities to test for various graph properties.

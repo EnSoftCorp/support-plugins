@@ -17,7 +17,7 @@
  */
 package org.jgrapht.event;
 
-import java.util.*;
+import java.util.EventListener;
 
 /**
  * A listener that is notified when the graph's vertex set changes. It should be used when

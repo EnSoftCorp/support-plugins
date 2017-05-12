@@ -17,7 +17,8 @@
  */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.*;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.WeightedGraph;
 
 /**
  * A builder class for undirected weighted graphs. If you want to extend this class, see

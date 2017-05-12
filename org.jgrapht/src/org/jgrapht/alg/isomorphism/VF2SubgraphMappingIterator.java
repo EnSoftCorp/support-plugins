@@ -17,9 +17,9 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.Comparator;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
 
 /**
  * This class is used to iterate over all existing (subgraph isomorphic) mappings between two

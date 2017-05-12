@@ -17,7 +17,7 @@
  */
 package org.jgrapht.alg.util;
 
-import java.util.*;
+import java.util.Comparator;
 
 /**
  * A default implementation for a check on equality (that always holds)

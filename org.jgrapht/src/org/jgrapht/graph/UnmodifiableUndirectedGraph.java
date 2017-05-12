@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
+import org.jgrapht.UndirectedGraph;
 
 /**
  * An undirected graph that cannot be modified.

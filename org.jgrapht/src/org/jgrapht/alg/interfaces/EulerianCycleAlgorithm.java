@@ -17,7 +17,8 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.GraphPath;
 
 /**
  * Computes an Eulerian cycle of an Eulerian graph. An

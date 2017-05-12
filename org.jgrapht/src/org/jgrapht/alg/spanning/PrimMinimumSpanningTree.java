@@ -17,10 +17,14 @@
  */
 package org.jgrapht.alg.spanning;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Objects;
+import java.util.PriorityQueue;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
+import org.jgrapht.Graph;
+import org.jgrapht.alg.interfaces.SpanningTreeAlgorithm;
 
 /**
  * An implementation of <a href="http://en.wikipedia.org/wiki/Prim's_algorithm"> Prim's

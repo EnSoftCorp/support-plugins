@@ -17,8 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.builder.*;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.WeightedGraph;
+import org.jgrapht.graph.builder.DirectedWeightedGraphBuilder;
+import org.jgrapht.graph.builder.DirectedWeightedGraphBuilderBase;
 
 /**
  * A directed weighted pseudograph. A directed weighted pseudograph is a non-simple directed graph

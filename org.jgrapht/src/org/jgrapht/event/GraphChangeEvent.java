@@ -17,7 +17,7 @@
  */
 package org.jgrapht.event;
 
-import java.util.*;
+import java.util.EventObject;
 
 /**
  * An event which indicates that a graph has changed. This class is a root for graph change events.

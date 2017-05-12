@@ -17,10 +17,13 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
+import org.jgrapht.WeightedGraph;
+import org.jgrapht.alg.interfaces.WeightedMatchingAlgorithm;
 
 /**
  * Kuhn-Munkres algorithm (named in honor of Harold Kuhn and James Munkres) solving <i>assignment

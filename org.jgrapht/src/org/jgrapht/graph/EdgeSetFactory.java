@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.Set;
 
 /**
  * A factory for edge sets. This interface allows the creator of a graph to choose the

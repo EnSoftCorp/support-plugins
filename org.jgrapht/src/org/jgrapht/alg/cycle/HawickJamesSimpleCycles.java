@@ -17,9 +17,15 @@
  */
 package org.jgrapht.alg.cycle;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graphs;
 
 /**
  * Find all simple cycles of a directed graph using the algorithm described by Hawick and James.

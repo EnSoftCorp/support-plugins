@@ -17,9 +17,9 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.util.*;
+import java.util.List;
 
-import org.jgrapht.*;
+import org.jgrapht.GraphPath;
 
 /**
  * An algorithm which computes k-shortest paths between vertices.

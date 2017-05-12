@@ -17,8 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.builder.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.graph.builder.DirectedGraphBuilder;
+import org.jgrapht.graph.builder.DirectedGraphBuilderBase;
 
 /**
  * A directed pseudograph. A directed pseudograph is a non-simple directed graph in which both graph

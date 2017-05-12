@@ -17,8 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.builder.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.graph.builder.DirectedGraphBuilder;
+import org.jgrapht.graph.builder.DirectedGraphBuilderBase;
 
 /**
  * A simple directed graph. A simple directed graph is a directed graph in which neither multiple

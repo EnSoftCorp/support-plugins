@@ -17,9 +17,11 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
 
 /**
  * Generates a ring graph of any size. A ring graph is a graph that contains a single cycle that

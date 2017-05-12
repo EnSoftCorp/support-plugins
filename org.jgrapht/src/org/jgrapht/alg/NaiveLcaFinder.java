@@ -17,9 +17,12 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
 
 /**
  * Find the Lowest Common Ancestor of a directed graph.

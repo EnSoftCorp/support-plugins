@@ -17,8 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.builder.*;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.WeightedGraph;
+import org.jgrapht.graph.builder.UndirectedWeightedGraphBuilder;
+import org.jgrapht.graph.builder.UndirectedWeightedGraphBuilderBase;
 
 /**
  * A simple weighted graph. A simple weighted graph is a simple graph for which edges are assigned

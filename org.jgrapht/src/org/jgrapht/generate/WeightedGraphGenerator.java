@@ -17,7 +17,7 @@
  */
 package org.jgrapht.generate;
 
-import org.jgrapht.*;
+import org.jgrapht.EdgeFactory;
 
 /**
  * A base implementation of a weighted graph generator.

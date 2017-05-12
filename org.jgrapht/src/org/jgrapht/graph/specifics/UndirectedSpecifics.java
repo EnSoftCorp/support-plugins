@@ -17,11 +17,14 @@
  */
 package org.jgrapht.graph.specifics;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
-import org.jgrapht.graph.*;
-import org.jgrapht.util.*;
+import org.jgrapht.graph.AbstractBaseGraph;
+import org.jgrapht.graph.EdgeSetFactory;
+import org.jgrapht.util.ArrayUnenforcedSet;
 
 /**
  * Plain implementation of UndirectedSpecifics. This implementation requires the least amount of

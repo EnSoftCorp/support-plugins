@@ -17,8 +17,9 @@
  */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
+import org.jgrapht.graph.UnmodifiableGraph;
 
 /**
  * Base class for builders of {@link Graph}

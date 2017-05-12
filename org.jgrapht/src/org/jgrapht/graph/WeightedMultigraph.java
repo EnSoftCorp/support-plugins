@@ -17,8 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.builder.*;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.WeightedGraph;
+import org.jgrapht.graph.builder.UndirectedWeightedGraphBuilder;
+import org.jgrapht.graph.builder.UndirectedWeightedGraphBuilderBase;
 
 /**
  * A weighted multigraph. A weighted multigraph is a non-simple undirected graph in which no loops

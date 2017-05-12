@@ -17,7 +17,9 @@
  */
 package org.jgrapht.alg.util;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * An implementation of <a href="http://en.wikipedia.org/wiki/Disjoint-set_data_structure">Union

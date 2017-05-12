@@ -17,11 +17,14 @@
  */
 package org.jgrapht.traverse;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.*;
-import org.jgrapht.util.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.alg.KosarajuStrongConnectivityInspector;
+import org.jgrapht.util.ModifiableInteger;
 
 /**
  * Implements topological order traversal for a directed acyclic graph. A topological sort is a

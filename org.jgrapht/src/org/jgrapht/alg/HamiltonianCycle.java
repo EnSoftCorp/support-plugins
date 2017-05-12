@@ -17,9 +17,10 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
 
-import org.jgrapht.graph.*;
+import org.jgrapht.graph.SimpleWeightedGraph;
 
 /**
  * This class will deal with finding the optimal or approximately optimal minimum tour (hamiltonian

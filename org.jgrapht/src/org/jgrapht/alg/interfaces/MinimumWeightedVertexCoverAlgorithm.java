@@ -17,11 +17,11 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
-import org.jgrapht.*;
+import org.jgrapht.UndirectedGraph;
 
 /**
  * Computes a weighted vertex cover in an undirected graph. A vertex cover of a graph is a set of

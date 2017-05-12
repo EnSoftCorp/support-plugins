@@ -17,7 +17,7 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.Comparator;
 
 class VF2GraphIsomorphismState<V, E>
     extends VF2State<V, E>

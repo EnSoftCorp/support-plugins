@@ -17,9 +17,10 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
 
 /**
  * An interface for generating new graph structures.

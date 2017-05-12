@@ -17,9 +17,11 @@
  */
 package org.jgrapht.alg.shortestpath;
 
-import java.util.*;
+import java.util.AbstractList;
+import java.util.ArrayList;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
 
 /**
  * List of paths <code>AbstractPathElement</code> with same target vertex.

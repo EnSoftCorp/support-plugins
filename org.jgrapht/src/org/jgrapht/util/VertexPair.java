@@ -17,8 +17,8 @@
  */
 package org.jgrapht.util;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Representation of a pair of vertices; to be replaced by Pair&lt;V,V&gt; if Sun ever gets around

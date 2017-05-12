@@ -17,9 +17,11 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
+import org.jgrapht.WeightedGraph;
 
 /**
  * An interface for generating graph structures having edges weighted with real values.

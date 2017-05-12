@@ -17,11 +17,14 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.traverse.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.alg.interfaces.StrongConnectivityAlgorithm;
+import org.jgrapht.traverse.DepthFirstIterator;
 
 /**
  * Performs cycle detection on a graph. The <i>inspected graph</i> is specified at construction time

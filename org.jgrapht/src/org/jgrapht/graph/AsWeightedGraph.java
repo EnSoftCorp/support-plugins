@@ -17,10 +17,11 @@
  */
 package org.jgrapht.graph;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.WeightedGraph;
 
 /**
  * <p>

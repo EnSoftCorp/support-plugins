@@ -17,10 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.util.*;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.util.WeightCombiner;
 
 /**
  * An undirected version of the read-only union of two graphs.

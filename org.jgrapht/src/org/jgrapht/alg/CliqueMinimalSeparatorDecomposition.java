@@ -17,11 +17,19 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
-import java.util.Map.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.Graphs;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.graph.SimpleGraph;
 
 /**
  * Clique Minimal Separator Decomposition using MCS-M+ and Atoms algorithm as described in Berry et

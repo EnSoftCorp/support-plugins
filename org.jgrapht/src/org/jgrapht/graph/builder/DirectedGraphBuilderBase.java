@@ -17,8 +17,8 @@
  */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.graph.UnmodifiableDirectedGraph;
 
 /**
  * Base class for {@link DirectedGraphBuilder} for extending.

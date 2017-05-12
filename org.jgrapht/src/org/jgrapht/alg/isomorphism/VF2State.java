@@ -17,7 +17,8 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * controls the matching between two graphs according to the VF2 algorithm.

@@ -17,9 +17,10 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-import org.jgrapht.*;
+import org.jgrapht.UndirectedGraph;
 
 /**
  * Inspects a graph for the biconnectivity property. See {@link BlockCutpointGraph} for more

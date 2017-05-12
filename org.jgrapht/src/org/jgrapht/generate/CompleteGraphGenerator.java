@@ -17,9 +17,11 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
 
 /**
  * Generates a complete graph of any size. A complete graph is a graph where every vertex shares an

@@ -17,7 +17,7 @@
  */
 package org.jgrapht.alg;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
 
 /**
  * Helper class for {@link BellmanFordShortestPath}; not intended for general use.

@@ -17,8 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.builder.*;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.graph.builder.UndirectedGraphBuilder;
+import org.jgrapht.graph.builder.UndirectedGraphBuilderBase;
 
 /**
  * A simple graph. A simple graph is an undirected graph for which at most one edge connects any two

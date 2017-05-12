@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph;
 
-import java.io.*;
+import java.io.Serializable;
 
 /**
  * IntrusiveEdge encapsulates the internals for the default edge implementation. It is not intended

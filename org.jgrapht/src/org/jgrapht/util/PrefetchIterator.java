@@ -17,7 +17,9 @@
  */
 package org.jgrapht.util;
 
-import java.util.*;
+import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Utility class to help implement an iterator/enumerator in which the hasNext() method needs to

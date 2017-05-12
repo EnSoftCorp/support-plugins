@@ -17,9 +17,9 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.Set;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
 
 /**
  * ParanoidGraph provides a way to verify that objects added to a graph obey the standard

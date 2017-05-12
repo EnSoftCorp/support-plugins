@@ -17,7 +17,8 @@
  */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.WeightedGraph;
 
 /**
  * A builder class for directed weighted graphs}. If you want to extend this class, see

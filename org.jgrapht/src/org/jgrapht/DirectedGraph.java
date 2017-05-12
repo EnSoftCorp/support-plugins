@@ -17,7 +17,7 @@
  */
 package org.jgrapht;
 
-import java.util.*;
+import java.util.Set;
 
 /**
  * A graph whose all edges are directed. This is the root interface of all directed graphs.

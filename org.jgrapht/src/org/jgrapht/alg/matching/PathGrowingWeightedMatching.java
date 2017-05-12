@@ -17,11 +17,18 @@
  */
 package org.jgrapht.alg.matching;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.alg.util.*;
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
+import org.jgrapht.alg.interfaces.MatchingAlgorithm;
+import org.jgrapht.alg.util.Pair;
+import org.jgrapht.alg.util.ToleranceDoubleComparator;
 
 /**
  * A linear time 1/2-approximation algorithm for finding a maximum weight matching in an arbitrary

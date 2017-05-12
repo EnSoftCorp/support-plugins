@@ -17,9 +17,9 @@
  */
 package org.jgrapht.graph;
 
-import java.util.function.*;
+import java.util.function.Predicate;
 
-import org.jgrapht.*;
+import org.jgrapht.UndirectedGraph;
 
 /**
  * An undirected graph that is a {@link MaskSubgraph} of another graph.

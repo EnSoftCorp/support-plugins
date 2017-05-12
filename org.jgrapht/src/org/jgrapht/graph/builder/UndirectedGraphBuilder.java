@@ -17,7 +17,8 @@
  */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.UndirectedGraph;
 
 /**
  * A builder class for {@link Graph}. If you want to extend this class, see

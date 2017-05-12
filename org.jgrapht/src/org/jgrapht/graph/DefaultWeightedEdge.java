@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
+import org.jgrapht.WeightedGraph;
 
 /**
  * A default implementation for edges in a {@link WeightedGraph}. All access to the weight of an

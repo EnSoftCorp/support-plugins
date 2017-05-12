@@ -17,10 +17,14 @@
  */
 package org.jgrapht;
 
-import java.util.*;
-import java.util.function.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import java.util.function.Predicate;
 
-import org.jgrapht.graph.*;
+import org.jgrapht.graph.AsUndirectedGraph;
+import org.jgrapht.graph.EdgeReversedGraph;
 
 /**
  * A collection of utilities to assist with graph manipulation.

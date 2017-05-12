@@ -17,9 +17,11 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 
-import org.jgrapht.*;
+import org.jgrapht.GraphMapping;
 
 /**
  * This class represents a GraphMapping between two (subgraph)isomorphic graphs. In the subgraph

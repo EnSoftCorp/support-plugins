@@ -17,9 +17,11 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
 
 /**
  * Generates a bidirectional <a href="http://mathworld.wolfram.com/GridGraph.html">grid graph</a> of

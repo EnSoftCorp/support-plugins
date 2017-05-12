@@ -17,10 +17,15 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.util.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.util.TypeUtil;
 
 /**
  * A skeletal implementation of the <tt>Graph</tt> interface, to minimize the effort required to

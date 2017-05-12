@@ -17,9 +17,9 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
 
 /**
  * <p>

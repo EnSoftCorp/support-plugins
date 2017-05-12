@@ -17,11 +17,18 @@
  */
 package org.jgrapht.graph.specifics;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.jgrapht.alg.util.*;
-import org.jgrapht.graph.*;
-import org.jgrapht.util.*;
+import org.jgrapht.alg.util.Pair;
+import org.jgrapht.alg.util.UnorderedPair;
+import org.jgrapht.graph.AbstractBaseGraph;
+import org.jgrapht.graph.EdgeSetFactory;
+import org.jgrapht.util.ArrayUnenforcedSet;
 
 /**
  * Fast implementation of UndirectedSpecifics. This class uses additional data structures to improve

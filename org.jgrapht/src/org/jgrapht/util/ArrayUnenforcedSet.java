@@ -17,7 +17,11 @@
  */
 package org.jgrapht.util;
 
-import java.util.*;
+import java.util.AbstractSet;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Helper for efficiently representing small sets whose elements are known to be unique by

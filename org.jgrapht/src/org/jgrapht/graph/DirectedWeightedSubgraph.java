@@ -17,10 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.util.*;
+import org.jgrapht.WeightedGraph;
+import org.jgrapht.util.TypeUtil;
 
 /**
  * A directed weighted graph that is a subgraph of another graph.

@@ -17,9 +17,13 @@
  */
 package org.jgrapht.alg.shortestpath;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.GraphPath;
+import org.jgrapht.Graphs;
 
 /**
  * A new path is created from a path concatenated to an edge. It's like a linked list.<br>

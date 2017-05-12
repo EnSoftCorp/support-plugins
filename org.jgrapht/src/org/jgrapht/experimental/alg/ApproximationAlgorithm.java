@@ -17,7 +17,7 @@
  */
 package org.jgrapht.experimental.alg;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * An interface for an approximation algorithm.

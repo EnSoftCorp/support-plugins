@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
+import org.jgrapht.VertexFactory;
 
 /**
  * A {@link VertexFactory} for producing vertices by using a class as a factory.

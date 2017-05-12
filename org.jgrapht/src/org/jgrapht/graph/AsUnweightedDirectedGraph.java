@@ -17,7 +17,7 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
 
 /**
  * An unweighted view of the backing weighted graph specified in the constructor. This graph allows

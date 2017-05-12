@@ -17,8 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.builder.*;
+import org.jgrapht.EdgeFactory;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.graph.builder.UndirectedGraphBuilder;
+import org.jgrapht.graph.builder.UndirectedGraphBuilderBase;
 
 /**
  * A pseudograph. A pseudograph is a non-simple undirected graph in which both graph loops and

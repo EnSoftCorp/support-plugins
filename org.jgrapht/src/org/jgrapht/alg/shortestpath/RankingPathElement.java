@@ -17,7 +17,7 @@
  */
 package org.jgrapht.alg.shortestpath;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
 
 /**
  * Helper class for {@link KShortestPaths}.

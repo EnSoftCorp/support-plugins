@@ -17,11 +17,18 @@
  */
 package org.jgrapht.alg.matching;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.util.*;
+import org.jgrapht.Graph;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.interfaces.MatchingAlgorithm;
+import org.jgrapht.util.ArrayUnenforcedSet;
+import org.jgrapht.util.TypeUtil;
 
 /**
  * An implementation of Edmonds Blossom Shrinking algorithm for constructing maximum matchings on

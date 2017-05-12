@@ -17,7 +17,7 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.util.*;
+import java.util.Set;
 
 /**
  * Allows to derive <a href=http://en.wikipedia.org/wiki/Minimum_spanning_tree> minimum spanning

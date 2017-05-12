@@ -17,10 +17,11 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
 
 /**
  * A directed graph that is a subgraph of another graph.

@@ -17,9 +17,12 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-import org.jgrapht.*;
+import org.jgrapht.GraphMapping;
 
 abstract class VF2MappingIterator<V, E>
     implements Iterator<GraphMapping<V, E>>

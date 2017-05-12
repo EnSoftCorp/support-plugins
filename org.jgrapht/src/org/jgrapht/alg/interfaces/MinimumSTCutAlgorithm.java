@@ -17,7 +17,7 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.util.*;
+import java.util.Set;
 
 /**
  * Given a weighted graph G(V,E) (directed or undirected). This class computes a minimum s-t cut. A

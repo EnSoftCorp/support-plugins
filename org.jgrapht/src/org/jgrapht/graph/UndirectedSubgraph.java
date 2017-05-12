@@ -17,9 +17,10 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.Set;
 
-import org.jgrapht.*;
+import org.jgrapht.UndirectedGraph;
 
 /**
  * An undirected graph that is a subgraph of another graph.

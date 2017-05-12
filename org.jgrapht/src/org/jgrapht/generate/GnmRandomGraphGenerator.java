@@ -17,10 +17,14 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
-import org.jgrapht.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
+import org.jgrapht.graph.AbstractBaseGraph;
 
 /**
  * Create a random graph based on the G(n, M) Erdős–Rényi model. See the Wikipedia article for

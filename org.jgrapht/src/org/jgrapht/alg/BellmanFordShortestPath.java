@@ -17,9 +17,9 @@
  */
 package org.jgrapht.alg;
 
-import java.util.*;
+import java.util.List;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
 
 /**
  * <a href="http://www.nist.gov/dads/HTML/bellmanford.html">Bellman-Ford algorithm</a>: weights

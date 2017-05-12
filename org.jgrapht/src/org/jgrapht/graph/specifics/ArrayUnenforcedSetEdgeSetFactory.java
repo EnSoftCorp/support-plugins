@@ -17,11 +17,11 @@
  */
 package org.jgrapht.graph.specifics;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Set;
 
-import org.jgrapht.graph.*;
-import org.jgrapht.util.*;
+import org.jgrapht.graph.EdgeSetFactory;
+import org.jgrapht.util.ArrayUnenforcedSet;
 
 /**
  * An edge set factory which creates {@link ArrayUnenforcedSet} of size 1, suitable for small degree

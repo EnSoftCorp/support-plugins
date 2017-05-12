@@ -17,7 +17,10 @@
  */
 package org.jgrapht;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * A GraphPath represents a <a href="http://mathworld.wolfram.com/Path.html"> path</a> in a

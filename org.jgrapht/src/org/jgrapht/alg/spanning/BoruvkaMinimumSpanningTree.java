@@ -17,11 +17,18 @@
  */
 package org.jgrapht.alg.spanning;
 
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.alg.util.*;
+import org.jgrapht.Graph;
+import org.jgrapht.alg.interfaces.SpanningTreeAlgorithm;
+import org.jgrapht.alg.util.ToleranceDoubleComparator;
+import org.jgrapht.alg.util.UnionFind;
 
 /**
  * Borůvka's algorithm for the computation of a minimum spanning tree.

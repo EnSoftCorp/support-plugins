@@ -17,8 +17,8 @@
  */
 package org.jgrapht.alg.util;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 /**
  * Generic unordered pair.

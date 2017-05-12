@@ -17,7 +17,10 @@
  */
 package org.jgrapht.graph.builder;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.Graphs;
+import org.jgrapht.WeightedGraph;
 
 /**
  * Base class for {@link DirectedWeightedGraphBuilder} for extending.

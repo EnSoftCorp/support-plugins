@@ -17,11 +17,15 @@
  */
 package org.jgrapht.alg.vertexcover;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.alg.vertexcover.util.*;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.interfaces.MinimumWeightedVertexCoverAlgorithm;
+import org.jgrapht.alg.vertexcover.util.RatioVertex;
 
 /**
  * Implementation of the 2-opt algorithm for a minimum weighted vertex cover by Clarkson, Kenneth L.

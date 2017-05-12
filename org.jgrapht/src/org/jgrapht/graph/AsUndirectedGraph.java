@@ -17,11 +17,13 @@
  */
 package org.jgrapht.graph;
 
-import java.io.*;
-import java.util.*;
+import java.io.Serializable;
+import java.util.Set;
 
-import org.jgrapht.*;
-import org.jgrapht.util.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.util.ArrayUnenforcedSet;
 
 /**
  * An undirected view of the backing directed graph specified in the constructor. This graph allows

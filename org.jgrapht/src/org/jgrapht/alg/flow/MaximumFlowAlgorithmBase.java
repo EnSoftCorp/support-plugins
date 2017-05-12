@@ -17,13 +17,25 @@
  */
 package org.jgrapht.alg.flow;
 
-import java.util.*;
-import java.util.stream.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.alg.util.*;
-import org.jgrapht.alg.util.extension.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
+import org.jgrapht.alg.interfaces.MaximumFlowAlgorithm;
+import org.jgrapht.alg.interfaces.MinimumSTCutAlgorithm;
+import org.jgrapht.alg.util.ToleranceDoubleComparator;
+import org.jgrapht.alg.util.extension.Extension;
+import org.jgrapht.alg.util.extension.ExtensionFactory;
+import org.jgrapht.alg.util.extension.ExtensionManager;
 
 /**
  * Base class backing algorithms allowing to derive

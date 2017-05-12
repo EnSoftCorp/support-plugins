@@ -17,7 +17,7 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.util.*;
+import java.util.Map;
 
 /**
  * An interface for all algorithms which assign scores to vertices of a graph.

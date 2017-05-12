@@ -17,9 +17,10 @@
  */
 package org.jgrapht.generate;
 
-import java.util.*;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.VertexFactory;
 
 /**
  * Generates a linear graph of any size. For a directed graph, the edges are oriented from

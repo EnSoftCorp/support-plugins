@@ -17,10 +17,11 @@
  */
 package org.jgrapht.traverse;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
 
-import org.jgrapht.*;
-import org.jgrapht.util.*;
+import org.jgrapht.Graph;
+import org.jgrapht.util.TypeUtil;
 
 /**
  * A depth-first iterator for a directed and an undirected graph. For this iterator to work

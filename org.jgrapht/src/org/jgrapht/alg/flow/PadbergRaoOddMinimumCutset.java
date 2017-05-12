@@ -17,14 +17,21 @@
  */
 package org.jgrapht.alg.flow;
 
-import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
-import org.jgrapht.*;
-import org.jgrapht.alg.*;
-import org.jgrapht.alg.interfaces.*;
-import org.jgrapht.graph.*;
+import org.jgrapht.Graph;
+import org.jgrapht.UndirectedGraph;
+import org.jgrapht.alg.ConnectivityInspector;
+import org.jgrapht.alg.interfaces.MinimumSTCutAlgorithm;
+import org.jgrapht.graph.DefaultWeightedEdge;
+import org.jgrapht.graph.SimpleWeightedGraph;
 
 /**
  * Implementation of the algorithm by Padberg and Rao to compute Odd Minimum Cut-Sets. Let G=(V,E)

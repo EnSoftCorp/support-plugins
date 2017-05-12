@@ -17,7 +17,8 @@
  */
 package org.jgrapht.alg.util.extension;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Convenience class to manage extensions/encapsulations. This class creates and manages object

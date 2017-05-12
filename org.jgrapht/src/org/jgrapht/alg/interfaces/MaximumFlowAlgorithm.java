@@ -17,7 +17,8 @@
  */
 package org.jgrapht.alg.interfaces;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Map;
 
 /**
  * Allows to derive <a href="https://en.wikipedia.org/wiki/Maximum_flow_problem">maximum-flow</a>

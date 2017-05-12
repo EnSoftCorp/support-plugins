@@ -17,9 +17,11 @@
  */
 package org.jgrapht.graph;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.jgrapht.*;
+import org.jgrapht.Graph;
+import org.jgrapht.GraphMapping;
 
 /**
  * Implementation of the GraphMapping interface. The performance of <code>

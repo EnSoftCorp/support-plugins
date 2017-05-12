@@ -17,9 +17,15 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-import org.jgrapht.*;
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.Graph;
 
 /**
  * This class represents the order on the graph vertices. There are also some helper-functions for

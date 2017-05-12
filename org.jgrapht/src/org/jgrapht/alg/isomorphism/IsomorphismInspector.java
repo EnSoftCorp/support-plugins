@@ -17,9 +17,9 @@
  */
 package org.jgrapht.alg.isomorphism;
 
-import java.util.*;
+import java.util.Iterator;
 
-import org.jgrapht.*;
+import org.jgrapht.GraphMapping;
 
 /**
  * General interface for graph and subgraph isomorphism.
