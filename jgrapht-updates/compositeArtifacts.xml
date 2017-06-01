@@ -5,13 +5,7 @@
     <property name='p2.timestamp' value='1483488000'/>
     <property name='p2.compressed' value='false'/>
   </properties>
-  <children size='2'>
-
-    <!-- JGraphT support plugins -->
-    <child location='https://ensoftcorp.github.io/support-plugins/jgrapht-updates/'/>
-
-    <!-- JSON Simple support plugins -->
-    <child location='https://ensoftcorp.github.io/support-plugins/jsonsimple-updates/'/>
-
+  <children size='1'>
+    <child location='1.0.1'/>
   </children>
 </repository>

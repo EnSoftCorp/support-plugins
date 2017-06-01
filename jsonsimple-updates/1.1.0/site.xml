@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.json.simple.feature_1.1.0.201706011052.jar" id="org.json.simple.feature" version="1.1.0.201706011052">
+      <category name="com.ensoftcorp.open.support.category"/>
+   </feature>
+   <category-def name="com.ensoftcorp.open.support.category" label="Third Party Support Plugins">
+      <description>
+         A collection of third party support plugins.
+      </description>
+   </category-def>
+</site>
