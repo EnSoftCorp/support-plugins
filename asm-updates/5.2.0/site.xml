@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.objectweb.asm.feature_5.2.0.201708101710.jar" id="org.objectweb.asm.feature" version="5.2.0.201708101710">
+      <category name="com.ensoftcorp.open.support.category"/>
+   </feature>
+   <category-def name="com.ensoftcorp.open.support.category" label="Third Party Support Plugins">
+      <description>
+         A collection of third party support plugins.
+      </description>
+   </category-def>
+</site>
