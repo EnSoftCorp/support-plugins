@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Jackson Annotation
+Bundle-SymbolicName: com.fasterxml.jackson.annotation
+Bundle-Version: 2.9.2.qualifier
+Bundle-Activator: com.fasterxml.jackson.annotation.Activator
+Bundle-Vendor: FasterXML
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.fasterxml.jackson.core;bundle-version="2.9.2"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: com.fasterxml.jackson.annotation

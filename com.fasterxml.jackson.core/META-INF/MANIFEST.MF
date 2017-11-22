@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Jackson Core
+Bundle-SymbolicName: com.fasterxml.jackson.core;singleton:=true
+Bundle-Version: 2.9.2.qualifier
+Bundle-Activator: com.fasterxml.jackson.core.Activator
+Bundle-Vendor: FasterXML
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: com.fasterxml.jackson.core,
+ com.fasterxml.jackson.core.async,
+ com.fasterxml.jackson.core.base,
+ com.fasterxml.jackson.core.filter,
+ com.fasterxml.jackson.core.format,
+ com.fasterxml.jackson.core.io,
+ com.fasterxml.jackson.core.json,
+ com.fasterxml.jackson.core.json.async,
+ com.fasterxml.jackson.core.sym,
+ com.fasterxml.jackson.core.type,
+ com.fasterxml.jackson.core.util
