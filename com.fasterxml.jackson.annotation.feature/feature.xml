@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.fasterxml.jackson.core.feature"
-      label="Jackson Core"
+      id="com.fasterxml.jackson.annotation.feature"
+      label="Jackson Annotation"
       version="2.9.2.qualifier"
       provider-name="FasterXML">
 
-   <description url="https://github.com/FasterXML/jackson-core">
-      Core Jackson processing abstractions (aka Streaming API), implementation for JSON
+   <description url="https://github.com/FasterXML/jackson-annotations">
+      Core annotations used for value types, used by Jackson data binding package.
    </description>
 
-   <copyright url="https://github.com/FasterXML/jackson-core">
+   <copyright url="https://github.com/FasterXML/jackson-annotation">
       Copyright (c) 2008 FasterXML
    </copyright>
 
-   <license url="https://raw.githubusercontent.com/FasterXML/jackson-core/master/src/main/resources/META-INF/LICENSE">
+   <license url="https://raw.githubusercontent.com/FasterXML/jackson-annotations/master/src/main/resources/META-INF/LICENSE">
       Apache (Software) License, version 2.0
 
-This copy of Jackson JSON processor streaming parser/generator is licensed under the
+This copy of Jackson JSON processor annotations is licensed under the
 Apache (Software) License, version 2.0 (&quot;the License&quot;).
 See the License for details about distribution rights, and the
 specific rights regarding derivate works.
@@ -27,7 +27,7 @@ http://www.apache.org/licenses/LICENSE-2.0
    </license>
 
    <plugin
-         id="com.fasterxml.jackson.core"
+         id="com.fasterxml.jackson.annotation"
          download-size="0"
          install-size="0"
          version="0.0.0"
