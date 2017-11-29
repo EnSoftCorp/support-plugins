@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="com.fasterxml.jackson.core.feature"
+      label="Jackson Core"
+      version="2.9.2.qualifier"
+      provider-name="FasterXML">
+
+   <description url="https://github.com/FasterXML/jackson-core">
+      Core Jackson processing abstractions (aka Streaming API), implementation for JSON
+   </description>
+
+   <copyright url="https://github.com/FasterXML/jackson-core">
+      Copyright (c) 2008 FasterXML
+   </copyright>
+
+   <license url="https://raw.githubusercontent.com/FasterXML/jackson-core/master/src/main/resources/META-INF/LICENSE">
+      This copy of Jackson JSON processor streaming parser/generator is licensed under the
+Apache (Software) License, version 2.0 (&quot;the License&quot;).
+See the License for details about distribution rights, and the
+specific rights regarding derivate works.
+
+You may obtain a copy of the License at:
+
+http://www.apache.org/licenses/LICENSE-2.0
+   </license>
+
+   <plugin
+         id="com.fasterxml.jackson.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>
