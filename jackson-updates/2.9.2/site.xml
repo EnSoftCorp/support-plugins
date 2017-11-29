@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.fasterxml.jackson.annotation.feature_2.9.2.201711291434.jar" id="com.fasterxml.jackson.annotation.feature" version="2.9.2.201711291434">
+      <category name="com.fasterxml.jackson.category"/>
+   </feature>
+   <feature url="features/com.fasterxml.jackson.core.feature_2.9.2.201711291434.jar" id="com.fasterxml.jackson.core.feature" version="2.9.2.201711291434">
+      <category name="com.fasterxml.jackson.category"/>
+   </feature>
+   <feature url="features/com.fasterxml.jackson.databind.feature_2.9.2.201711291434.jar" id="com.fasterxml.jackson.databind.feature" version="2.9.2.201711291434">
+      <category name="com.fasterxml.jackson.category"/>
+   </feature>
+   <category-def name="com.fasterxml.jackson.category" label="Jackson">
+      <description>
+         Jackson is a high-performance JSON processor for Java. Its developers extol the combination of fast, correct, lightweight, and ergonomic attributes of the library. Jackson provides many ways of working including simple POJO converted to/from JSON for simple cases. Jackson provides a set of annotations for mapping too.
+      </description>
+   </category-def>
+</site>

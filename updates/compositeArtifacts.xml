@@ -16,5 +16,8 @@
     <!-- ASM support plugins -->
     <child location='https://ensoftcorp.github.io/support-plugins/asm-updates/'/>
 	
+	<!-- Jackson support plugins -->
+    <child location='https://ensoftcorp.github.io/support-plugins/jackson-updates/'/>
+	
   </children>
 </repository>
