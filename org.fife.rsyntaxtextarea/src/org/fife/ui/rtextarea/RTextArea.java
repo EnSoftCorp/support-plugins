@@ -373,7 +373,7 @@ public class RTextArea extends RTextAreaBase implements Printable {
 	 * @see #getMarkAllHighlightColor()
 	 * @see #setMarkAllHighlightColor(Color)
 	 */
-	void clearMarkAllHighlights() {
+	public void clearMarkAllHighlights() {
 		((RTextAreaHighlighter)getHighlighter()).clearMarkAllHighlights();
 		//markedWord = null;
 		repaint();
