@@ -1,6 +1,7 @@
 package com.fasterxml.jackson.databind.cfg;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSetter;

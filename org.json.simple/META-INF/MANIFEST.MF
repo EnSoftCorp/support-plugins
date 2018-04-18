@@ -8,3 +8,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.json.simple,
  org.json.simple.parser
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.json.simple

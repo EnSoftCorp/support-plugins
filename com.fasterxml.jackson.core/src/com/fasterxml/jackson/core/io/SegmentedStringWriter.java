@@ -1,6 +1,7 @@
 package com.fasterxml.jackson.core.io;
 
-import java.io.*;
+import java.io.StringWriter;
+import java.io.Writer;
 
 import com.fasterxml.jackson.core.util.BufferRecycler;
 import com.fasterxml.jackson.core.util.TextBuffer;

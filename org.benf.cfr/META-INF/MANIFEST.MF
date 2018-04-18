@@ -57,3 +57,4 @@ Export-Package: org.benf.cfr.reader,
  org.benf.cfr.reader.util.graph,
  org.benf.cfr.reader.util.lambda,
  org.benf.cfr.reader.util.output
+Automatic-Module-Name: org.benf.cfr

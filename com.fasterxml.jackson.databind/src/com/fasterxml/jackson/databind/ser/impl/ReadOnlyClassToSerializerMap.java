@@ -1,6 +1,7 @@
 package com.fasterxml.jackson.databind.ser.impl;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.JsonSerializer;

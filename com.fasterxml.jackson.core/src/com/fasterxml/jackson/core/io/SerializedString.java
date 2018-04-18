@@ -1,6 +1,9 @@
 package com.fasterxml.jackson.core.io;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
 import com.fasterxml.jackson.core.SerializableString;

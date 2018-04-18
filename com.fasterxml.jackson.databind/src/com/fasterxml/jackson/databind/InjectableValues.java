@@ -1,6 +1,7 @@
 package com.fasterxml.jackson.databind;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.util.ClassUtil;
 

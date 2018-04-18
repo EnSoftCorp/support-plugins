@@ -1,10 +1,11 @@
 package com.fasterxml.jackson.databind.deser.std;
 
 import java.nio.ByteBuffer;
-import java.util.*;
+import java.util.HashSet;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 
 /**
  * Container class that contains serializers for JDK types that

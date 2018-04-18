@@ -3,8 +3,7 @@ package com.fasterxml.jackson.databind;
 import java.io.IOException;
 import java.util.Iterator;
 
-import com.fasterxml.jackson.core.*;
-
+import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitable;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatVisitorWrapper;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;

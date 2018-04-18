@@ -1,7 +1,7 @@
 package com.fasterxml.jackson.databind.module;
 
 import java.lang.reflect.Modifier;
-import java.util.*;
+import java.util.HashMap;
 
 import com.fasterxml.jackson.databind.AbstractTypeResolver;
 import com.fasterxml.jackson.databind.BeanDescription;

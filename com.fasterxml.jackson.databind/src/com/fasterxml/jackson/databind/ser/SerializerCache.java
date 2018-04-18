@@ -1,9 +1,12 @@
 package com.fasterxml.jackson.databind.ser;
 
-import java.util.*;
+import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicReference;
 
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.impl.ReadOnlyClassToSerializerMap;
 import com.fasterxml.jackson.databind.util.TypeKey;
 

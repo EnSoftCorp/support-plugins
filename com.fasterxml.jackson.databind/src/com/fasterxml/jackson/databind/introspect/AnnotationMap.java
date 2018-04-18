@@ -1,7 +1,8 @@
 package com.fasterxml.jackson.databind.introspect;
 
 import java.lang.annotation.Annotation;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
 
 import com.fasterxml.jackson.databind.util.Annotations;
 

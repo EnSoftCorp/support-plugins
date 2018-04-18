@@ -1,14 +1,16 @@
 package com.fasterxml.jackson.databind.ser.impl;
 
+import java.io.IOException;
+import java.util.Set;
+
 import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.ser.BeanPropertyWriter;
 import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
 import com.fasterxml.jackson.databind.util.NameTransformer;
-
-import java.io.IOException;
-import java.util.Set;
 
 public class UnwrappingBeanSerializer
     extends BeanSerializerBase

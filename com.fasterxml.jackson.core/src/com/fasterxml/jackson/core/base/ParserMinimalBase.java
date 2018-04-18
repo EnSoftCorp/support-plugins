@@ -1,17 +1,28 @@
 package com.fasterxml.jackson.core.base;
 
+import static com.fasterxml.jackson.core.JsonTokenId.ID_EMBEDDED_OBJECT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_FALSE;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_NULL;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_NUMBER_FLOAT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_NUMBER_INT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_STRING;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_TRUE;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.core.JsonParser.Feature;
+import com.fasterxml.jackson.core.Base64Variant;
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonStreamContext;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.JsonTokenId;
 import com.fasterxml.jackson.core.io.JsonEOFException;
 import com.fasterxml.jackson.core.io.NumberInput;
 import com.fasterxml.jackson.core.util.ByteArrayBuilder;
 import com.fasterxml.jackson.core.util.VersionUtil;
-
-import static com.fasterxml.jackson.core.JsonTokenId.*;
 
 /**
  * Intermediate base class used by all Jackson {@link JsonParser}

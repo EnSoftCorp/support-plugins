@@ -1,7 +1,7 @@
 package com.fasterxml.jackson.databind.type;
 
 import java.lang.reflect.TypeVariable;
-import java.util.*;
+import java.util.Map;
 
 import com.fasterxml.jackson.databind.JavaType;
 

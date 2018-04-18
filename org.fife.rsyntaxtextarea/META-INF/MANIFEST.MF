@@ -20,3 +20,4 @@ Export-Package: org.fife.io,
  org.fife.ui.rsyntaxtextarea.templates,
  org.fife.ui.rtextarea,
  org.fife.util
+Automatic-Module-Name: org.fife.rsyntaxtextarea

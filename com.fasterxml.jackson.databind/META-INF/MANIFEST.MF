@@ -31,3 +31,4 @@ Export-Package: com.fasterxml.jackson.databind,
  com.fasterxml.jackson.databind.ser.std,
  com.fasterxml.jackson.databind.type,
  com.fasterxml.jackson.databind.util
+Automatic-Module-Name: com.fasterxml.jackson.databind

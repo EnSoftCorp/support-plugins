@@ -1,6 +1,10 @@
 package com.fasterxml.jackson.databind.util;
 
-import java.text.*;
+import java.text.DateFormat;
+import java.text.DecimalFormat;
+import java.text.FieldPosition;
+import java.text.ParseException;
+import java.text.ParsePosition;
 import java.util.Date;
 import java.util.GregorianCalendar;
 

@@ -1,14 +1,23 @@
 package com.fasterxml.jackson.core.filter;
 
+import static com.fasterxml.jackson.core.JsonTokenId.ID_END_ARRAY;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_END_OBJECT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_FIELD_NAME;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_START_ARRAY;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_START_OBJECT;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 
-import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.Base64Variant;
+import com.fasterxml.jackson.core.JsonLocation;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonStreamContext;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.core.JsonTokenId;
 import com.fasterxml.jackson.core.util.JsonParserDelegate;
-
-import static com.fasterxml.jackson.core.JsonTokenId.*;
 
 /**
  * Specialized {@link JsonParserDelegate} that allows use of

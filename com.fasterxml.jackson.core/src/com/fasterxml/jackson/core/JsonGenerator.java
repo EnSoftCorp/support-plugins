@@ -4,7 +4,27 @@
  */
 package com.fasterxml.jackson.core;
 
-import java.io.*;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_EMBEDDED_OBJECT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_END_ARRAY;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_END_OBJECT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_FALSE;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_FIELD_NAME;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_NOT_AVAILABLE;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_NULL;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_NUMBER_FLOAT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_NUMBER_INT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_START_ARRAY;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_START_OBJECT;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_STRING;
+import static com.fasterxml.jackson.core.JsonTokenId.ID_TRUE;
+
+import java.io.Closeable;
+import java.io.Flushable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.Reader;
+import java.io.Writer;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -16,8 +36,6 @@ import com.fasterxml.jackson.core.io.CharacterEscapes;
 import com.fasterxml.jackson.core.type.WritableTypeId;
 import com.fasterxml.jackson.core.type.WritableTypeId.Inclusion;
 import com.fasterxml.jackson.core.util.VersionUtil;
-
-import static com.fasterxml.jackson.core.JsonTokenId.*;
 
 /**
  * Base class that defines public API for writing JSON content.

@@ -3,7 +3,8 @@ package com.fasterxml.jackson.core.json.async;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import com.fasterxml.jackson.core.*;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonToken;
 import com.fasterxml.jackson.core.async.ByteArrayFeeder;
 import com.fasterxml.jackson.core.async.NonBlockingInputFeeder;
 import com.fasterxml.jackson.core.io.CharTypes;

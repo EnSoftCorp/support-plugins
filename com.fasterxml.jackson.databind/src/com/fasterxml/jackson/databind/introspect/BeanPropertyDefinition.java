@@ -3,8 +3,11 @@ package com.fasterxml.jackson.databind.introspect;
 import java.util.Iterator;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.AnnotationIntrospector;
+import com.fasterxml.jackson.databind.BeanProperty;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.PropertyMetadata;
+import com.fasterxml.jackson.databind.PropertyName;
 import com.fasterxml.jackson.databind.util.ClassUtil;
 import com.fasterxml.jackson.databind.util.Named;
 

@@ -2,10 +2,10 @@ package com.fasterxml.jackson.databind.ser.std;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.util.*;
+import java.util.Date;
 
-import com.fasterxml.jackson.core.*;
-import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.annotation.JacksonStdImpl;
 
 /**
