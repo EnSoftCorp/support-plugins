@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Cfr
 Bundle-SymbolicName: org.benf.cfr
-Bundle-Version: 0.132.0
+Bundle-Version: 0.138.0
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Export-Package: org.benf.cfr.reader,
  org.benf.cfr.reader.api,
@@ -12,7 +12,6 @@ Export-Package: org.benf.cfr.reader,
  org.benf.cfr.reader.bytecode.analysis.opgraph.op3rewriters,
  org.benf.cfr.reader.bytecode.analysis.opgraph.op4rewriters,
  org.benf.cfr.reader.bytecode.analysis.opgraph.op4rewriters.checker,
- org.benf.cfr.reader.bytecode.analysis.opgraph.op4rewriters.iterrewriter,
  org.benf.cfr.reader.bytecode.analysis.opgraph.op4rewriters.matchutil,
  org.benf.cfr.reader.bytecode.analysis.opgraph.op4rewriters.transformers,
  org.benf.cfr.reader.bytecode.analysis.opgraph.op4rewriters.util,
@@ -52,6 +51,7 @@ Export-Package: org.benf.cfr.reader,
  org.benf.cfr.reader.util,
  org.benf.cfr.reader.util.annotation,
  org.benf.cfr.reader.util.bytestream,
+ org.benf.cfr.reader.util.collections,
  org.benf.cfr.reader.util.functors,
  org.benf.cfr.reader.util.getopt,
  org.benf.cfr.reader.util.graph,
