@@ -5,7 +5,7 @@
     <property name='p2.timestamp' value='1483488000'/>
     <property name='p2.compressed' value='false'/>
   </properties>
-  <children size='4'>
+  <children size='6'>
 
     <!-- JGraphT support plugins -->
     <child location='https://ensoftcorp.github.io/support-plugins/jgrapht-updates/'/>
@@ -15,9 +15,15 @@
 
     <!-- ASM support plugins -->
     <child location='https://ensoftcorp.github.io/support-plugins/asm-updates/'/>
-	
-	<!-- Jackson support plugins -->
+
+    <!-- Jackson support plugins -->
     <child location='https://ensoftcorp.github.io/support-plugins/jackson-updates/'/>
-	
+
+    <!-- CFR support plugins -->
+    <child location='https://ensoftcorp.github.io/support-plugins/cfr-updates/'/>
+
+    <!-- CFR support plugins -->
+    <child location='https://ensoftcorp.github.io/support-plugins/rsyntaxtextarea-updates/'/>
+
   </children>
 </repository>

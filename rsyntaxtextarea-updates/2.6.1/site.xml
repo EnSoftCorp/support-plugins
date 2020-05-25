@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/org.fife.rsyntaxtextarea.feature_2.6.1.202005242222.jar" id="org.fife.rsyntaxtextarea.feature" version="2.6.1.202005242222">
+      <category name="com.ensoftcorp.open.support.category"/>
+   </feature>
+   <category-def name="com.ensoftcorp.open.support.category" label="Third Party Support Plugins">
+      <description>
+         A collection of third party support plugins.
+      </description>
+   </category-def>
+</site>
