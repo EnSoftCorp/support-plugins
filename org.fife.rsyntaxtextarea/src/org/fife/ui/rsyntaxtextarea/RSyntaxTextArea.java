@@ -9,6 +9,7 @@
  */
 package org.fife.ui.rsyntaxtextarea;
 
+import java.awt.AWTPermission;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Cursor;
@@ -639,14 +640,17 @@ private boolean fractionalFontMetricsEnabled;
 		// Make sure there is a system clipboard, and that we can write
 		// to it.
 		SecurityManager sm = System.getSecurityManager();
-		if (sm!=null) {
-			try {
-				sm.checkSystemClipboardAccess();
-			} catch (SecurityException se) {
-				UIManager.getLookAndFeel().provideErrorFeedback(null);
-				return;
-			}
+		
+		if (sm == null) {
+			return;
 		}
+	    try {
+	        sm.checkPermission(new AWTPermission("accessClipboard"));
+	    } catch (SecurityException x) {
+	    	UIManager.getLookAndFeel().provideErrorFeedback(null);
+	    	return;
+	    }
+	    
 		Clipboard cb = getToolkit().getSystemClipboard();
 
 		// Create the RTF selection.
